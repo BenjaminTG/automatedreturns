@@ -1,16 +1,22 @@
 import React from 'react';
-import SignIn from '../components/sign-in.js';
-import OrderPage from '../components/order/order.js';
+import SignInForm from '../components/signInForm.js'
+import OrderDetails from '../components/orderDetails'
+import Instruction from '../components/instructions'
+import Steps from '../components/steps'
 
 
 
-function render () {
-    return (
-        <div>
-            <SignIn/>
-            <OrderPage/>
-        </div>
-    )
+export default class IndexRoute extends React.Component {
+
+    render() {
+        return (
+            <div>
+                <Instruction />
+                <Steps />
+                <SignInForm />
+                <OrderDetails />
+            </div>
+        )
+    }
+
 }
-
-export default render;

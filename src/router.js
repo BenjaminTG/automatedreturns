@@ -14,6 +14,6 @@ export default function render() {
             <Route path="/" exact>
                 <IndexRoute />
             </Route>
-        </Switch>
+        </Switch> 
     )
 }

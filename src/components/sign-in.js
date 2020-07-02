@@ -37,7 +37,7 @@ class SignInForm extends React.Component {
               <div>
                     <Intro/>
                     <Steps/>
-                    <Form/>
+                   
 
                 </div>
 

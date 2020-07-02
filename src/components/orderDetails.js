@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from "react-redux";
 import OrderItem from "./orderItem";
-import orderItem from './orderItem';
+
+
 
 
 class OrderDetails extends React.Component {
@@ -81,7 +82,9 @@ class OrderDetails extends React.Component {
 
     render() {
         return (
+            
             <div>
+                
                 {this.loadingStatus()}
                 {this.orderInfo()}
                 {this.orderItems()}
