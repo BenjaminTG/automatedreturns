@@ -1,6 +1,6 @@
 import React from 'react';
 import OrderHeader from './orderHeader.js'
-import OrderContents from './orderContents.js'
+import OrderContents from './orderContent.js'
 
 function render () {
     return (

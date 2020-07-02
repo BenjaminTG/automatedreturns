@@ -1,38 +1,62 @@
-import React from 'react';
-import Popup from "reactjs-popup";
+import React from 'react'
+import { connect } from "react-redux";
+import { startReturn } from "../store/actions"
 
-//* Toll Tip Message *//
+class SignInForm extends React.Component {
 
-const TollTip = () => (
-    <div className="card">
-      <div className="content">
-        Your order ID will be on your confirmation email.
-      </div>
-    </div>
-);
+    constructor(props) {
+        super(props)
+        this.state = {
+            orderId: "",
+            emailAddress: "",
+        }
+    }
 
-function render () {
-    return (
-        <div className="containerBorder">
-        <div className="formContainer">
-        <form action="/action_page.php">
-        <label className="inputLabels" for="orderId">Order ID
-        <Popup trigger={<span className="signInHint">?</span>}
-        position="right top"
-        on="hover">
-        <TollTip title="Right Top" />
-        </Popup>
-        </label>
-        <input className="inputBlocks" type="text" id="orderId" name="orderId" value="" />
-        <label className="inputLabels" for="eAddress">Email Address</label>
-        <input className="inputBlocks" type="text" id="emailAddress" name="eAddress" value="" />
-        <input type="submit" value="Start Returns Process" />
-        <input type="submit" value="View Return Status" />
-        </form>
-        </div> 
-        </div>
-    )
+    handleOrderIdChange(e) {
+        this.setState({orderId: e.target.value})
+    }
+
+    handleEmailAddressChange(e) {
+        this.setState({emailAddress: e.target.value})
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        console.log("Starting return", {...this.state})
+        this.props.startReturn(this.state.orderId, this.state.emailAddress)
+    }
+
+    render() {
+        return (
+            <div>
+                <form onSubmit={(e) => this.handleSubmit(e)}>
+                    <input
+                        type="text"
+                        placeholder="Order ID"
+                        value={this.state.orderId}
+                        onChange={(e) => this.handleOrderIdChange(e)} />
+                    <input
+                        type="email"
+                        placeholder="Email Address"
+                        value={this.state.emailAddress}
+                        onChange={(e) => this.handleEmailAddressChange(e)} />
+                    <button type="submit">Start a New Return</button>
+                </form>
+            </div>
+        );
+    }
+
 }
 
+const mapStateToProps = state => ({
+    // No mappings yet
+})
 
-export default render;
+const mapDispatchToProps = {
+    startReturn
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SignInForm);
