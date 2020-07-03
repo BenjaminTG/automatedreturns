@@ -1,6 +1,5 @@
 import React from 'react';
 import OrderHeader from './orderHeader.js'
-import OrderContents from './orderContent.js'
 
 function render () {
     return (
@@ -17,7 +16,6 @@ function render () {
             </div>
         <div className="containerOrderBorder">
         <OrderHeader/>
-        <OrderContents/>
         </div>
 
          </div>

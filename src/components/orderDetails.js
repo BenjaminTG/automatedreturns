@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import OrderItem from "./orderItem";
+import Order from '../components/order/order'
 
 
 
@@ -45,7 +46,7 @@ class OrderDetails extends React.Component {
         {
             return (
                 <div>
-                    Order Items:
+                    <Order/>
                     <ul>
                         {this.props.order.items.map(i =>
                             <OrderItem key={i.level_code} item={i} />

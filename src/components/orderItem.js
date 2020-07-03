@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from "react-redux";
-import OrderContents from './order/orderContent.js'
 
 class OrderItem extends React.Component {
 
@@ -11,9 +10,54 @@ class OrderItem extends React.Component {
     render() {
         return (
             <div>
-                <OrderContents/>
-                {this.props.item.name} {this.props.item.color} (Size {this.props.item.size})
-                <img src={this.props.item.image} width="10em" height="10em" />
+     <div>
+         <div>
+             <div>
+            <div className="uk-grid">
+                <div className="uk-width-1-2">
+                    <div className="uk-grid">
+                        <div className="uk-width-1-3">
+                            <img src={this.props.item.image} width="30em" height="30em" />
+                        </div>
+                        <div className="uk-width-1-3">
+                            <p>{this.props.item.color} {this.props.item.name}</p>
+                            <p>(Size {this.props.item.size})</p>
+                        </div>
+                        <div className="uk-width-1-3">
+                            <p>{this.props.item.unit_price}</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="uk-width-1-2">
+                    <div className="uk-grid">
+                        <div className="uk-width-1-3">
+                            <form>
+                                <input type="number" id="returnQty" name="quantity" value="{this.props.item.quantity_return_allowed}"/>
+                            </form>
+                        </div>
+                        <div className="uk-width-1-3">
+                         <select>
+                            <option value="" selected disabled hidden>Return for Refund</option>
+                            <option value="grapefruit">Incorrect item/colour received</option>
+                            <option value="too">Too Big</option>
+                            <option value="tooSmall">Too Small</option>
+                            <option value="noLike">Doesn't suit/didn't like</option>
+                            <option value="faulty">Faulty</option>
+                            </select>
+                        </div>
+                        <div className="uk-width-1-3">
+                            <p>Images</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            
+         </div>
+      </div>
+              
+                
+                
             </div>
         )
     }
