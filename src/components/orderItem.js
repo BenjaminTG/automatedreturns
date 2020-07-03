@@ -39,7 +39,7 @@ class OrderItem extends React.Component {
                               }
                               {this.props.item.quantity_return_allowed == 0 &&
                                 <p>
-                                No items Returnable sorry
+                                This item isn't returnable sorry
                                 </p>
                               }
                         </div>
@@ -57,7 +57,7 @@ class OrderItem extends React.Component {
                         </div>
                         <div className="uk-width-1-3">
                             {this.props.item.quantity_return_allowed > 0 &&
-                                <p>Images</p>
+                                <p><img className="bc-img-upload-icon" src="https://cdn11.bigcommerce.com/s-b972phpqg5/product_images/uploaded_images/camera.png"/></p>
                             }
                         </div>
                     </div>

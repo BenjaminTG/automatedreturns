@@ -46,6 +46,7 @@ class OrderDetails extends React.Component {
         {
             return (
                 <div>
+                  
                     <Order/>
                     <ul>
                         {this.props.order.items.map(i =>

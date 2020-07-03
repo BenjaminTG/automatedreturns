@@ -82,5 +82,9 @@
   .bc-returns-header {
     border: 1px solid #d0d0d0;
   }
+
+  .bc-img-upload-icon {
+    max-width: 30px;
+  }
   
   
