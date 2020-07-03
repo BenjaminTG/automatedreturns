@@ -23,6 +23,8 @@ class ApiService {
             status: 200, 
             statusText: "OK",
             data: {
+                "order_id": "12345", 
+                "order_created_at": "2020-07-03T02:34:55.523+00:00",
                 "return_possible": true,
                 "validation_errors": [],
                 "items": [
