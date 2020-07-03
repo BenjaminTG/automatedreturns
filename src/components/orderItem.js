@@ -32,7 +32,7 @@ class OrderItem extends React.Component {
                 <div className="uk-width-1-2">
                     <div className="uk-grid">
                         <div className="uk-width-1-3">
-                           {this.props.item.quantity_return_allowed > 0 &&
+                             {this.props.item.quantity_return_allowed > 0 &&
                                 <form>
                                     <input type="number" id="returnQty" name="quantity" value="{this.props.item.quantity_return_allowed}"/>
                                 </form>
@@ -44,6 +44,7 @@ class OrderItem extends React.Component {
                               }
                         </div>
                         <div className="uk-width-1-3">
+                        {this.props.item.quantity_return_allowed > 0 &&
                          <select>
                             <option value="" selected disabled hidden>Return for Refund</option>
                             <option value="grapefruit">Incorrect item/colour received</option>
@@ -52,9 +53,12 @@ class OrderItem extends React.Component {
                             <option value="noLike">Doesn't suit/didn't like</option>
                             <option value="faulty">Faulty</option>
                             </select>
+                             }
                         </div>
                         <div className="uk-width-1-3">
-                            <p>Images</p>
+                            {this.props.item.quantity_return_allowed > 0 &&
+                                <p>Images</p>
+                            }
                         </div>
                     </div>
                 </div>
