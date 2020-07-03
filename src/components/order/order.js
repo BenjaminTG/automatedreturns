@@ -4,7 +4,7 @@ import OrderHeader from './orderHeader.js'
 function render () {
     return (
       <div>
-         <div className="containerBorder">
+         <div>
             <div className="uk-grid uk-margin-small-right uk-margin-small-left">
                 <div className="uk-width-1-2">
                     <p>Order Number: XXXX</p>
