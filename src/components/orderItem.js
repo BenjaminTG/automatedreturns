@@ -45,15 +45,8 @@ class OrderItem extends React.Component {
                         </div>
                         <div className="uk-width-1-3">
                         {this.props.item.quantity_return_allowed > 0 &&
-                         <select>
-                            <option value="" selected disabled hidden>Return for Refund</option>
-                            <option value="incorrect">Incorrect item/colour received</option>
-                            <option value="too">Too Big</option>
-                            <option value="tooSmall">Too Small</option>
-                            <option value="noLike">Doesn't suit/didn't like</option>
-                            <option value="faulty">Faulty</option>
-                            </select>
-                            }
+                            <FlavorForm/>
+                          }
                              
                         </div>
                         <div className="uk-width-1-3">
