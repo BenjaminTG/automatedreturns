@@ -1,5 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
+import { Provider } from 'react-redux'
+import { ConnectedRouter } from 'connected-react-router'
+import history from './store/history'
+import store from './store'
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -12,11 +16,11 @@ import RouterView from './router'
 
 function App() {
   return (
-    <div>
-      <Router>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
         <RouterView />
-      </Router>
-    </div>
+      </ConnectedRouter>
+    </Provider>
   );
 }
 

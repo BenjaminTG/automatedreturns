@@ -108,6 +108,8 @@ class OrderDetails extends React.Component {
 
 }
 
+/* pulls in returns info from create-returns.js */
+
 const mapStateToProps = (state) => ({
     loading: state.createReturn.loading,
     error: state.createReturn.error,

@@ -9,7 +9,7 @@ const Card = ({title}) => (
         Your order ID will be on your confirmation value.
       </div>
     </div>
-  );
+  ); 
 
 class SignInForm extends React.Component {
 
@@ -76,3 +76,5 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(SignInForm);
+
+
