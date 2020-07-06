@@ -4,6 +4,8 @@ import {
     START_RETURN__FAILURE
 } from "../actionTypes"
 
+import history from '../history'
+
 const initialState = {
     loading: false,
     error: null,
@@ -27,6 +29,13 @@ export default function(state = initialState, action) {
 
         case START_RETURN__SUCCESS:
             const { order } = action.payload
+            /* When successful add /returns/begin to the nav history */
+            /* TODO fix (split out to actions.js) */
+            
+            //    console.log(history)
+            //    history.push("/returns/begin");
+            //    console.log("Pigs ears")
+
             return {
                 ...state,
                 loading: false,

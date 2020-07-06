@@ -14,7 +14,6 @@ export default class IndexRoute extends React.Component {
                 <Instruction />
                 <Steps />
                 <SignInForm />
-                <OrderDetails />
             </div>
         )
     }

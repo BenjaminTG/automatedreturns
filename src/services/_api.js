@@ -17,7 +17,7 @@ class ApiService {
 
         // Wait for 500ms
         await new Promise((resolve, reject) => {setTimeout(() => resolve(), 500);});
-        
+        // throw new Error({status:404, data:"Text", statusText: "Not found"})
         // Create a phony JSON response for now
         let response = {
             status: 200, 

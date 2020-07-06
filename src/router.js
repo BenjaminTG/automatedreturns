@@ -7,12 +7,16 @@ import {
 } from 'react-router-dom'
 
 import IndexRoute from './routes/index'
+import BeginReturnRoute from './routes/beginreturn'
 
 export default function render() {
     return (
         <Switch>
             <Route path="/" exact>
                 <IndexRoute />
+            </Route>
+            <Route path="/returns/begin">
+                <BeginReturnRoute />
             </Route>
         </Switch> 
     )

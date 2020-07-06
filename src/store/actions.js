@@ -1,4 +1,10 @@
-import {ApiService} from '../services'
+import {
+    useHistory
+} from "react-router-dom";
+import {
+    ApiService
+} from '../services'
+import history from './history'
 
 import {
     START_RETURN__REQUEST,
@@ -32,9 +38,14 @@ export const startReturn = (orderId, emailAddress) => {
     return dispatch => {
         dispatch(startReturnRequest(orderId, emailAddress))
         ApiService.getOrderForReturn(orderId, emailAddress)
-            .then(response => dispatch(startReturnSuccess(response.data)))
-            .catch(e => dispatch(startReturnFailure(e)));
+            .then(response => {
+                dispatch(startReturnSuccess(response.data))
+                /* When successful add /returns/begin to the nav history */
+                history.push("/returns/begin");
+            })
+            .catch(e => {
+                dispatch(startReturnFailure(e))
+                /* Return error */
+            })
     }
 }
-
-
