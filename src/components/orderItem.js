@@ -2,13 +2,26 @@ import React from 'react';
 import { connect } from "react-redux";
 import FlavorForm from './dropdown'
 
+class Dropdown extends React.Component {   
+    render() {
+        return (
+          <option value={ this.props.value }>{ this.props.value }</option>
+        );
+    }
+}
+
 class OrderItem extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props);                                      
     }
 
     render() {
+        var allowedQty = [this.props.item.quantity_return_allowed];
+        var elements = [];
+        for(var i = 0; i <= allowedQty; i ++){
+            elements.push(<Dropdown id= { i } value={ i } />);
+        }
         return (
             <div>
      <div>
@@ -32,14 +45,17 @@ class OrderItem extends React.Component {
                 <div className="uk-width-1-2">
                     <div className="uk-grid">
                         <div className="uk-width-1-3">
+                            
                              {this.props.item.quantity_return_allowed > 0 &&
-                                <form>
-                                    <input type="number" id="returnQty" name="quantity" value="{this.props.item.quantity_return_allowed}"/>
-                                </form>
+                              <div>
+                                <select className={"uk-select " + ((this.props.item.quantity_return_allowed = 0) ? 'uk-disabled' : '')}>
+                                    {elements}
+                                </select>
+                            </div>
                               }
                               {this.props.item.quantity_return_allowed == 0 &&
                                 <p>
-                                This item isn't returnable sorry
+                                    {!!(this.props.item.validation_errors) ? this.props.item.validation_errors : "" }
                                 </p>
                               }
                         </div>
@@ -68,5 +84,6 @@ class OrderItem extends React.Component {
         )
     }
 }
+
 
 export default connect()(OrderItem);
