@@ -23,6 +23,7 @@ class SignInForm extends React.Component {
 
     handleOrderIdChange(e) {
         this.setState({orderId: e.target.value})
+
     }
 
     handleEmailAddressChange(e) {
@@ -47,6 +48,8 @@ class SignInForm extends React.Component {
                     <input className="inputBlocks"
                         type="text"
                         placeholder="Order ID"
+                        pattern="^\d[\d\s]*$"
+                        title="Please enter valid order number. Your order ID will be on your confirmation value"
                         value={this.state.orderId}
                         onChange={(e) => this.handleOrderIdChange(e)} />
                         <label for="{this.state.emailAddress}">Email Address</label>
@@ -57,7 +60,10 @@ class SignInForm extends React.Component {
                         onChange={(e) => this.handleEmailAddressChange(e)} />
                     <button type="submit">Start a New Return</button>
                     <button type="submit">View Return Status</button>
+                    
                 </form>
+                
+                
             </div>
         );
     }
