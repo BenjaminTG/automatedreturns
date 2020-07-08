@@ -14,7 +14,23 @@ class OrderDetails extends React.Component {
     
     constructor(props) {
         super(props)
+
+        this.state.returnsData = {
+            items: [
+
+            ]
+        }
+
     }
+
+    updateItem(newDetails) {
+        this.setState("items", newDetails)
+    }
+
+
+
+
+
 
     hasOrder() {
         return (
@@ -59,7 +75,7 @@ class OrderDetails extends React.Component {
                     <Order/>
                     <ul>
                         {this.props.order.items.map(i =>
-                            <OrderItem key={i.level_code} item={i} />
+                            <OrderItem key={i.level_code} item={i}   onItemUpdated={(item) => this.updateItem(item)}  />
                         )}
                     </ul>
                 </div>

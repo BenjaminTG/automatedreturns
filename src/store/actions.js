@@ -9,8 +9,19 @@ import history from './history'
 import {
     START_RETURN__REQUEST,
     START_RETURN__SUCCESS,
-    START_RETURN__FAILURE
+    START_RETURN__FAILURE,
+    SHOW_POPUP,
 } from "./actionTypes"
+
+
+
+export const showPopup = (message) => ({
+    type: SHOW_POPUP,
+    payload: {
+        message
+    }
+})
+
 
 export const startReturnRequest = (orderId, emailAddress) => ({
     type: START_RETURN__REQUEST,
