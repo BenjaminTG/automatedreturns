@@ -19,7 +19,7 @@ class FlavorForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             <select className="uk-width-1-1" value={this.state.value} onChange={this.handleChange}>
-                    <option value="" selected disabled hidden>Keep Item</option>
+                    <option value="" selected>Keep Item</option>
                     <option value="exchange">Return For Exchange</option>
                     <option value="refund">Return for Refund</option>
             </select>

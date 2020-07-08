@@ -11,10 +11,19 @@ class Dropdown extends React.Component {
 }
 
 class OrderItem extends React.Component {
-
     constructor(props) {
-        super(props);                                      
+        super(props);
+        this.state = {
+            qtyReturning: 0
+        }
+        this.qtyToReturn = this.qtyToReturn.bind(this)     ;                                 
     }
+      qtyToReturn(e) {
+          this.setState ({
+            qtyReturning : e.target.value
+          });
+          e.preventDefault();
+      }
 
     render() {
         var allowedQty = [this.props.item.quantity_return_allowed];
@@ -44,22 +53,26 @@ class OrderItem extends React.Component {
                 </div>
                 <div className="uk-width-1-2">
                     <div className="uk-grid">
-                        <div className="uk-width-1-3">
-                            
+                        <div className="uk-width-1-3"> 
                              {this.props.item.quantity_return_allowed > 0 &&
                               <div>
-                                <select className={"uk-select " + ((this.props.item.quantity_return_allowed = 0) ? 'uk-disabled' : '')}>
+                                  <form>
+                                      <select value={this.state.selectValue} onChange={this.qtyToReturn} className={"uk-select " + ((this.props.item.quantity_return_allowed = 0) ? 'uk-disabled' : '')}>
                                     {elements}
                                 </select>
+                                </form>
+                             
                             </div>
                               }
                               {this.props.item.quantity_return_allowed == 0 &&
                                 <p>
                                     {!!(this.props.item.validation_errors) ? this.props.item.validation_errors : "" }
+                                    <p>{this.state.qtyReturning}</p>
                                 </p>
                               }
                         </div>
                         <div className="uk-width-1-3">
+                            <FlavorForm/>
                         {this.props.item.quantity_return_allowed > 0 &&
                             <FlavorForm/>
                           }

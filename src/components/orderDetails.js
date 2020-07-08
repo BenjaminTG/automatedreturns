@@ -67,6 +67,18 @@ class OrderDetails extends React.Component {
         }
     }
 
+    refundTotal () {
+        if(this.hasOrder())
+        {
+            return (
+                <div className="uk-width-1-1">
+                    <p>Refund Total:  
+                    </p>
+                </div>
+            );
+        }
+    }
+
     errorInfo() {
         if(this.props.error) {
             return (
@@ -93,13 +105,13 @@ class OrderDetails extends React.Component {
 
     render() {
         return (
-            
             <div>
                 
                 {this.loadingStatus()}
                 {this.orderInfo()}
                 {this.orderItems()}
                 <hr />
+                {this.refundTotal()}
                 {this.errorInfo()}
                 {this.orderJson()}
             </div>
