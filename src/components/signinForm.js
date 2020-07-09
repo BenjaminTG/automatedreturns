@@ -1,7 +1,10 @@
 import React from 'react'
 import { connect } from "react-redux";
-import { startReturn } from "../store/actions"
 import Popup from "reactjs-popup";
+import {
+    startReturn,
+    getReturnStatus,
+} from "../store/actions"
 
 const Card = ({title}) => (
     <div className="card">
@@ -32,8 +35,18 @@ class SignInForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+    }
+
+    startNewReturn(e) {
+        e.preventDefault();
         console.log("Starting return", {...this.state})
         this.props.startReturn(this.state.orderId, this.state.emailAddress)
+    }
+
+    getReturnStatus(e) {
+        e.preventDefault();
+        console.log("Getting return status", {...this.state})
+        this.props.getReturnStatus(this.state.orderId, this.state.emailAddress)
     }
 
     render() {
@@ -58,12 +71,9 @@ class SignInForm extends React.Component {
                         placeholder="Email Address"
                         value={this.state.emailAddress}
                         onChange={(e) => this.handleEmailAddressChange(e)} />
-                    <button type="submit">Start a New Return</button>
-                    <button type="submit">View Return Status</button>
-                    
+                    <button type="submit" onClick={(e) => this.startNewReturn(e)}>Start a New Return</button>
+                    <button type="submit" onClick={(e) => this.getReturnStatus(e)}>View Return Status</button>
                 </form>
-                
-                
             </div>
         );
     }
@@ -75,7 +85,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-    startReturn
+    startReturn,
+    getReturnStatus,
 }
 
 export default connect(

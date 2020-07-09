@@ -8,7 +8,7 @@ import {
 
 import IndexRoute from './routes/index'
 import BeginReturnRoute from './routes/beginreturn'
-import SubmittedReturnRoute from './routes/submittedreturns'
+import ReturnStatusRoute from './routes/returnstatus'
 
 export default function render() {
     return (
@@ -19,8 +19,8 @@ export default function render() {
             <Route path="/returns/begin">
                 <BeginReturnRoute />
             </Route>
-            <Route path="/returns/submitted">
-                <SubmittedReturnRoute />
+            <Route path="/returns/status">
+                <ReturnStatusRoute />
             </Route>
         </Switch> 
     )
