@@ -1,7 +1,7 @@
 import React from 'react';
-import OrderDetails from '../components/orderDetails';
 import { connect } from 'react-redux';
 import { goHome } from '../store/actions';
+import ExchangeDetails from '../components/exchangeDetails'
 
 class ReturnStatusRoute extends React.Component {
 
@@ -16,23 +16,8 @@ class ReturnStatusRoute extends React.Component {
     render() {
         return (
             <div>
-                <OrderDetails />
-                <p>Submitted</p>
-
-                <div>
-                    {/* There are {getExoCount()} exchange orders! */}
-
-                    {JSON.stringify(this.props.exos)}
-                </div>
-
-                <div>
-                    {JSON.stringify(this.props.loading)}
-                </div>
-
-                <div>
-                    {JSON.stringify(this.props.error)}
-                </div>
-
+                <ExchangeDetails/>
+                
                 <button onClick={() => this.props.goHome()}>Go Home</button>
 
             </div>

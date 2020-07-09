@@ -44,7 +44,44 @@ class ApiService {
                         ],
                         "validation_errors": [
                             "Some of these items have already been returned."
-                        ]
+                        ],
+                        "reasons": {
+                            "return": [
+                                {
+                                    "reason_code": "FAULTY",
+                                    "allowed": true,
+                                    "validation_errors": []
+                                },
+                                {
+                                    "reason_code": "WRONG_COLOUR",
+                                    "allowed": true,
+                                    "validation_errors": []
+                                },
+                                {
+                                    "reason_code": "WRONG_ITEM",
+                                    "allowed": true,
+                                    "validation_errors": []
+                                },
+                                {
+                                    "reason_code": "SIZE_TOO_SMALL",
+                                    "allowed": false,
+                                    "validation_errors": ["ORDER:AGE_LIMIT_EXCEEDED"]
+                                },
+                                {
+                                    "reason_code": "SIZE_TOO_BIG",
+                                    "allowed": false,
+                                    "validation_errors": ["ORDER:AGE_LIMIT_EXCEEDED"]
+                                },
+                                {
+                                    "reason_code": "CHANGE_OF_MIND",
+                                    "allowed": false,
+                                    "validation_errors": ["ORDER:AGE_LIMIT_EXCEEDED"]
+                                }
+                            ],
+                            "exchange": [
+                            ]
+                        }
+                        
                     },
                     {
                         "level_code": "EFGH_5392",
@@ -60,7 +97,43 @@ class ApiService {
                         ],
                         "validation_errors": [
                             "Sale items are not eligible to be returned."
-                        ]
+                        ],
+                        "reasons": {
+                            "return": [
+                                {
+                                    "reason_code": "FAULTY",
+                                    "allowed": true,
+                                    "validation_errors": []
+                                },
+                                {
+                                    "reason_code": "WRONG_COLOUR",
+                                    "allowed": true,
+                                    "validation_errors": []
+                                },
+                                {
+                                    "reason_code": "WRONG_ITEM",
+                                    "allowed": true,
+                                    "validation_errors": []
+                                },
+                                {
+                                    "reason_code": "SIZE_TOO_SMALL",
+                                    "allowed": false,
+                                    "validation_errors": ["ORDER:AGE_LIMIT_EXCEEDED"]
+                                },
+                                {
+                                    "reason_code": "SIZE_TOO_BIG",
+                                    "allowed": false,
+                                    "validation_errors": ["ORDER:AGE_LIMIT_EXCEEDED"]
+                                },
+                                {
+                                    "reason_code": "CHANGE_OF_MIND",
+                                    "allowed": false,
+                                    "validation_errors": ["ORDER:AGE_LIMIT_EXCEEDED"]
+                                }
+                            ],
+                            "exchange": [
+                            ]
+                        }
                     }
                 ]
             }
