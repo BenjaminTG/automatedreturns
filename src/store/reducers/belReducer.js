@@ -14,10 +14,10 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 quantityToReturn,
-                quantityToExchange,
-                keepRefundExchange,
-                refundReason,
-                exchangeReason
+                quantityToExchange
+                // keepRefundExchange,
+                // refundReason,
+                // exchangeReason
             }
 
         default:

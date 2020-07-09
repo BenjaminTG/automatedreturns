@@ -1,5 +1,5 @@
 import React from 'react';
-import SignInForm from '../components/signInForm.js'
+import SignInForm from '../components/signinForm.js'
 import OrderDetails from '../components/orderDetails'
 import Instruction from '../components/instructions'
 import Steps from '../components/steps'
