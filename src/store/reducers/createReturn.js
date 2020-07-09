@@ -4,8 +4,6 @@ import {
     START_RETURN__FAILURE
 } from "../actionTypes"
 
-import history from '../history'
-
 const initialState = {
     loading: false,
     error: null,
@@ -52,6 +50,6 @@ export default function(state = initialState, action) {
             }
 
         default:
-            return state;
+            return {...state};
     }
 }
