@@ -1,4 +1,4 @@
-import { SHOW_POPUP } from '../actionTypes'
+import { DROPDOWN } from '../actionTypes'
 
 const initialState = {
     quantityToReturn: 0,
@@ -8,13 +8,16 @@ const initialState = {
 
 export default function(state = initialState, action) {
     switch(action.type) {
-        case SHOW_POPUP:
-          window.alert(action.payload.quantityToReturn + " " + action.payload.quantityToExchange);
+        case DROPDOWN:
+          window.alert(action.payload.quantityToReturn);
             const { quantityToReturn, quantityToExchange } = action.payload
             return {
                 ...state,
                 quantityToReturn,
-                quantityToExchange
+                quantityToExchange,
+                keepRefundExchange,
+                refundReason,
+                exchangeReason
             }
 
         default:

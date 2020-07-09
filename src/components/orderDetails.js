@@ -17,7 +17,7 @@ function prettyDate(rawDate) {
       render () {
           return (
               <div>
-                  <p>Refund Total:</p>
+                  <p>1</p>
               </div>
           )
       }
@@ -29,7 +29,7 @@ function prettyDate(rawDate) {
     }
     render () {
         return (
-            <div>refund</div>
+            <div>$1.00</div>
         )
     }
 }
@@ -38,8 +38,13 @@ class OrderDetails extends React.Component {
     
     constructor(props) {
         super(props)
+        this.state = {
+            items: {
+                quantityToReturn: this.props.quantityToReturn,
+                quantityToExchange: this.props.quantityToExchange
+            }
+        }
     }
-
 
     hasOrder() {
         return (
@@ -96,9 +101,24 @@ class OrderDetails extends React.Component {
         if(this.hasOrder())
         {
             return (
-                <div className="uk-width-1-1">
-                    {this.props.quantityToReturn > 0 ? <RefundTotal/> : ''}
-                    {this.props.quantityToExchange > 0 ? <ExchangeTotal/> : ''}
+                <div className="uk-width-1-1 uk-grid" uk-grid>
+                    <div className="uk-width-1-1">
+                        <p className="uk-text-bold uk-margin-remove">*Shipping will need to be paid for if total refund is under $60</p>
+                    </div>
+                    <div className="uk-width-1-2">
+                        <p className="uk-margin-remove uk-text-bold">Total Refunded</p>
+                        {this.props.quantityToExchange > 0 ? <p className="uk-margin-remove uk-text-bold">Total Exchange</p> : ''}
+                    </div>
+                    <div className="uk-width-1-2">
+                        <div>
+                           {this.props.quantityToReturn > 0 ? <RefundTotal/> : '$0.00'}    
+                        </div>
+                        <div>
+                            {this.props.quantityToExchange > 0 ? <ExchangeTotal/> : ''} 
+                        </div>
+                    </div>
+                    
+                    
                 </div>
             );
         }

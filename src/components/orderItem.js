@@ -2,19 +2,14 @@ import React from 'react';
 import { connect } from "react-redux";
 import FlavorForm from './dropdown'
 import Options from '../components/options'
-import { showPopup } from '../store/actions'
+import { dropDown } from '../store/actions'
 
 class OrderItem extends React.Component {
     constructor(props) {
         super(props);             
     }
-    onFruitChosen(choice, e) {
-        this.props.showPopup(choice, 3)
-        // this.props.showPopup(choice, 3)
-        // this.setState({
-        //     counter: 2
-        // })
-      //  this.props.showPopup(this.state.counter + " " + this.props.counter + " " + choice)
+    returnExchangeStart(choice, e) {
+        this.props.dropDown(choice, 3)
     }
 
     render() {
@@ -50,7 +45,7 @@ class OrderItem extends React.Component {
                               <div>
                                    <Options
                                 choices={elements}
-                                onChoice={(choice) => this.onFruitChosen(choice)} />
+                                onChoice={(choice) => this.returnExchangeStart(choice)} />
                                 <p>{this.props.item.validation_errors}</p>
                             </div>
                               }
@@ -86,7 +81,7 @@ class OrderItem extends React.Component {
 
 const stateMappings = state => ({})
 const actionMappings = {
-    showPopup
+    dropDown
 }
 
 export default connect(stateMappings, actionMappings)(OrderItem);

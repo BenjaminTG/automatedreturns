@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from "react-redux";
+import Options from '../components/options'
+import { dropDown } from '../store/actions'
 
 class FlavorForm extends React.Component {
     constructor(props) {
@@ -7,6 +10,10 @@ class FlavorForm extends React.Component {
   
       this.handleChange = this.handleChange.bind(this);
     }
+
+    returnExchangeStart(choice, e) {
+      this.props.dropDown(choice)
+  }
   
     handleChange(event) {
       this.setState({value: event.target.value});
@@ -18,11 +25,9 @@ class FlavorForm extends React.Component {
       return (
         <form onSubmit={this.handleSubmit}>
           <label>
-            <select className="uk-width-1-1" value={this.state.value} onChange={this.handleChange}>
-                    <option value="" selected>Keep Item</option>
-                    <option value="exchange">Return For Exchange</option>
-                    <option value="refund">Return for Refund</option>
-            </select>
+          <Options
+                                choices={["Keep Item", "Return for Exchange", "Return for Refund"]}
+                                onChoice={(choice) => this.returnExchangeStart(choice)} />
             {this.state.value !== "" &&
             <div>
                <form>
@@ -47,5 +52,9 @@ class FlavorForm extends React.Component {
     }
   }
 
+  const stateMappings = state => ({})
+  const actionMappings = {
+      dropDown
+  }
 
-export default FlavorForm;
+export default connect(stateMappings, actionMappings)(FlavorForm);

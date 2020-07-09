@@ -10,12 +10,12 @@ import {
     START_RETURN__REQUEST,
     START_RETURN__SUCCESS,
     START_RETURN__FAILURE,
-    SHOW_POPUP,
+    DROPDOWN,
 } from "./actionTypes"
 
 
-export const showPopup = (quantityToReturn, quantityToExchange) => ({
-    type: SHOW_POPUP,
+export const dropDown = (quantityToReturn, quantityToExchange) => ({
+    type: DROPDOWN,
     payload: {
         quantityToReturn,
         quantityToExchange
