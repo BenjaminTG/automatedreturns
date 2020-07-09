@@ -14,22 +14,7 @@ class OrderDetails extends React.Component {
     
     constructor(props) {
         super(props)
-
-        this.state.returnsData = {
-            items: [
-
-            ]
-        }
-
     }
-
-    updateItem(newDetails) {
-        this.setState("items", newDetails)
-    }
-
-
-
-
 
 
     hasOrder() {

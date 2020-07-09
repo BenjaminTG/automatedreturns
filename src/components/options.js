@@ -7,11 +7,19 @@ class OptionsComponent extends React.Component {
         super(props)
     }
 
+    renderSelect(choice, e) {
+        return (
+            <select onChange={(e) => this.props.onChoice(e.target.value)}>
+            {this.renderChoices()}
+            </select>
+        )
+    }
+
     renderChoice(choice) {
         return (
-            <button onClick={() => this.props.onChoice(choice)}>
+            <option value={choice}>
                 {choice}
-            </button>
+            </option>
         )
     }
 
@@ -19,11 +27,11 @@ class OptionsComponent extends React.Component {
         return this.props.choices.map(choice => this.renderChoice(choice))
     }
 
-    render() {
+    render(choice) {
         return (
-            <div>
-                {this.renderChoices()}
-            </div>
+            <form>
+                {this.renderSelect(choice)}
+            </form>
         )
     }
 
@@ -31,7 +39,6 @@ class OptionsComponent extends React.Component {
 
 
 export default OptionsComponent
-
 
 
 // import OptionsComponent from './components/options.js';

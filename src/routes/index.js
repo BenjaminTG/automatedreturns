@@ -11,11 +11,7 @@ import { showPopup } from '../store/actions'
 
 class IndexRoute extends React.Component {
 
-    onItemChosen(choice) {
-        console.log("The user chose item", choice);
-    }
-
-    onFruitChosen(choice) {
+    onFruitChosen(choice, e) {
         console.log("The user chose the fruit", choice);
         this.props.showPopup("Do you like " + choice + "?");
     }
@@ -25,11 +21,7 @@ class IndexRoute extends React.Component {
             <div>
 
                 <Options
-                    choices={["1 item", "2 items", "3 items", "4 items"]}
-                    onChoice={(choice) => this.onItemChosen(choice)} />
-
-                <Options
-                    choices={["apple", "banana", "avacado", "lime", "persimmon", "kiwi fruit"]}
+                    choices={[0, 1, 2, 3]}
                     onChoice={(choice) => this.onFruitChosen(choice)} />
 
                 <Instruction />
