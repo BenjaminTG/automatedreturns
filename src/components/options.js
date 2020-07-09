@@ -9,7 +9,7 @@ class OptionsComponent extends React.Component {
 
     renderSelect(choice, e) {
         return (
-            <select onChange={(e) => this.props.onChoice(e.target.value)}>
+            <select className="uk-select" onChange={(e) => this.props.onChoice(e.target.value)}>
             {this.renderChoices()}
             </select>
         )

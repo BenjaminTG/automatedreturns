@@ -1,35 +1,27 @@
 import React from 'react';
 import { connect } from "react-redux";
 import FlavorForm from './dropdown'
-
-class Dropdown extends React.Component {   
-    render() {
-        return (
-          <option value={ this.props.value }>{ this.props.value }</option>
-        );
-    }
-}
+import Options from '../components/options'
+import { showPopup } from '../store/actions'
 
 class OrderItem extends React.Component {
     constructor(props) {
-        super(props);
-        this.state = {
-            qtyReturning: 0
-        }
-        this.qtyToReturn = this.qtyToReturn.bind(this)     ;                                 
+        super(props);             
     }
-      qtyToReturn(e) {
-          this.setState ({
-            qtyReturning : e.target.value
-          });
-          e.preventDefault();
-      }
+    onFruitChosen(choice, e) {
+        this.props.showPopup(choice, 3)
+        // this.props.showPopup(choice, 3)
+        // this.setState({
+        //     counter: 2
+        // })
+      //  this.props.showPopup(this.state.counter + " " + this.props.counter + " " + choice)
+    }
 
     render() {
         var allowedQty = [this.props.item.quantity_return_allowed];
         var elements = [];
         for(var i = 0; i <= allowedQty; i ++){
-            elements.push(<Dropdown id= { i } value={ i } />);
+           elements.push(i);
         }
         return (
             <div>
@@ -56,27 +48,22 @@ class OrderItem extends React.Component {
                         <div className="uk-width-1-3"> 
                              {this.props.item.quantity_return_allowed > 0 &&
                               <div>
-                                  <form>
-                                      <select value={this.state.selectValue} onChange={this.qtyToReturn} className={"uk-select " + ((this.props.item.quantity_return_allowed = 0) ? 'uk-disabled' : '')}>
-                                    {elements}
-                                </select>
-                                </form>
-                             
+                                   <Options
+                                choices={elements}
+                                onChoice={(choice) => this.onFruitChosen(choice)} />
+                                <p>{this.props.item.validation_errors}</p>
                             </div>
                               }
                               {this.props.item.quantity_return_allowed == 0 &&
                                 <p>
                                     {!!(this.props.item.validation_errors) ? this.props.item.validation_errors : "" }
-                                    <p>{this.state.qtyReturning}</p>
                                 </p>
                               }
                         </div>
                         <div className="uk-width-1-3">
-                            <FlavorForm/>
                         {this.props.item.quantity_return_allowed > 0 &&
                             <FlavorForm/>
-                          }
-                             
+                          }     
                         </div>
                         <div className="uk-width-1-3">
                             {this.props.item.quantity_return_allowed > 0 &&
@@ -90,13 +77,16 @@ class OrderItem extends React.Component {
             
          </div>
       </div>
-              
-                
-                
+                     
             </div>
         )
     }
 }
 
 
-export default connect()(OrderItem);
+const stateMappings = state => ({})
+const actionMappings = {
+    showPopup
+}
+
+export default connect(stateMappings, actionMappings)(OrderItem);

@@ -14,11 +14,11 @@ import {
 } from "./actionTypes"
 
 
-
-export const showPopup = (message) => ({
+export const showPopup = (quantityToReturn, quantityToExchange) => ({
     type: SHOW_POPUP,
     payload: {
-        message
+        quantityToReturn,
+        quantityToExchange
     }
 })
 

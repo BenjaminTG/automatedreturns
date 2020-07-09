@@ -10,6 +10,30 @@ function prettyDate(rawDate) {
     return humanDate;
   }
 
+  class ExchangeTotal extends React.Component {
+      constructor(props) {
+          super(props)
+      }
+      render () {
+          return (
+              <div>
+                  <p>Refund Total:</p>
+              </div>
+          )
+      }
+  }
+
+  class RefundTotal extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    render () {
+        return (
+            <div>refund</div>
+        )
+    }
+}
+
 class OrderDetails extends React.Component {
     
     constructor(props) {
@@ -68,13 +92,13 @@ class OrderDetails extends React.Component {
         }
     }
 
-    refundTotal () {
+    refundReturnTotal () {
         if(this.hasOrder())
         {
             return (
                 <div className="uk-width-1-1">
-                    <p>Refund Total:  
-                    </p>
+                    {this.props.quantityToReturn > 0 ? <RefundTotal/> : ''}
+                    {this.props.quantityToExchange > 0 ? <ExchangeTotal/> : ''}
                 </div>
             );
         }
@@ -112,7 +136,7 @@ class OrderDetails extends React.Component {
                 {this.orderInfo()}
                 {this.orderItems()}
                 <hr />
-                {this.refundTotal()}
+                {this.refundReturnTotal()}
                 {this.errorInfo()}
                 {this.orderJson()}
             </div>
@@ -127,6 +151,8 @@ const mapStateToProps = (state) => ({
     loading: state.createReturn.loading,
     error: state.createReturn.error,
     order: state.createReturn.order,
+    quantityToReturn: state.belReducer.quantityToReturn,
+    quantityToExchange: state.belReducer.quantityToExchange
 })
 
 export default connect(mapStateToProps)(OrderDetails);

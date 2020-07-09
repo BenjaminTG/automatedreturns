@@ -1,21 +1,20 @@
 import { SHOW_POPUP } from '../actionTypes'
 
 const initialState = {
-    name: "Bel",
-    age: 20,
-    counter: 0,
-    message: null
+    quantityToReturn: 0,
+    quantityToExchange: 0
 }
 
 
 export default function(state = initialState, action) {
     switch(action.type) {
-
         case SHOW_POPUP:
-            window.alert(action.payload.message)
+          window.alert(action.payload.quantityToReturn + " " + action.payload.quantityToExchange);
+            const { quantityToReturn, quantityToExchange } = action.payload
             return {
                 ...state,
-                message: action.payload.message
+                quantityToReturn,
+                quantityToExchange
             }
 
         default:
@@ -28,7 +27,7 @@ export default function(state = initialState, action) {
                 counter: state.counter
             }
 
-            newState.counter = newState.counter + 1
+          //  newState.counter = newState.counter + 1
 
             return newState;
 
