@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
-import OrderItem from "./orderItem";
-import Order from '../components/order/order'
+import SubmittedItem from "./submittedItem";
+import Submitted from '../components/order/submitted'
 import moment from 'moment-timezone'
 
 function prettyDate(rawDate) {
@@ -10,40 +10,10 @@ function prettyDate(rawDate) {
     return humanDate;
   }
 
-  class ExchangeTotal extends React.Component {
-      constructor(props) {
-          super(props)
-      }
-      render () {
-          return (
-              <div>
-                  <p>1</p>
-              </div>
-          )
-      }
-  }
-
-  class RefundTotal extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-    render () {
-        return (
-            <div>$1.00</div>
-        )
-    }
-}
-
 class OrderDetails extends React.Component {
     
     constructor(props) {
         super(props)
-        this.state = {
-            items: {
-                quantityToReturn: this.props.quantityToReturn,
-                quantityToExchange: this.props.quantityToExchange
-            }
-        }
     }
 
     hasOrder() {
@@ -80,45 +50,18 @@ class OrderDetails extends React.Component {
         }
     }
 
-    orderItems() {
+    submittedItems() {
         if(this.hasOrder())
         {
             return (
                 <div>
                   
-                    <Order/>
+                    <Submitted/>
                     <ul className="bc-return-item-list">
                         {this.props.order.items.map(i =>
-                            <OrderItem key={i.level_code} item={i}   onItemUpdated={(item) => this.updateItem(item)}  />
+                            <SubmittedItem key={i.level_code} item={i} />
                         )}
                     </ul>
-                </div>
-            );
-        }
-    }
-
-    refundReturnTotal () {
-        if(this.hasOrder())
-        {
-            return (
-                <div className="uk-width-1-1 uk-grid" uk-grid>
-                    <div className="uk-width-1-1">
-                        <p className="uk-text-bold uk-margin-remove">*Shipping will need to be paid for if total refund is under $60</p>
-                    </div>
-                    <div className="uk-width-1-2">
-                        <p className="uk-margin-remove uk-text-bold">Total Refunded</p>
-                        {this.props.quantityToExchange > 0 ? <p className="uk-margin-remove uk-text-bold">Total Exchange</p> : ''}
-                    </div>
-                    <div className="uk-width-1-2">
-                        <div>
-                           {this.props.quantityToReturn > 0 ? <RefundTotal/> : '$0.00'}    
-                        </div>
-                        <div>
-                            {this.props.quantityToExchange > 0 ? <ExchangeTotal/> : ''} 
-                        </div>
-                    </div>
-                    
-                    
                 </div>
             );
         }
@@ -150,13 +93,13 @@ class OrderDetails extends React.Component {
 
     render() {
         return (
+            
             <div>
                 
                 {this.loadingStatus()}
                 {this.orderInfo()}
-                {this.orderItems()}
+                {this.submittedItems()}
                 <hr />
-                {this.refundReturnTotal()}
                 {this.errorInfo()}
                 {this.orderJson()}
             </div>
@@ -171,8 +114,6 @@ const mapStateToProps = (state) => ({
     loading: state.createReturn.loading,
     error: state.createReturn.error,
     order: state.createReturn.order,
-    quantityToReturn: state.belReducer.quantityToReturn,
-    quantityToExchange: state.belReducer.quantityToExchange
 })
 
 export default connect(mapStateToProps)(OrderDetails);
