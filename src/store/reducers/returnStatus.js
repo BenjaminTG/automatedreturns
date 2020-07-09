@@ -1,7 +1,8 @@
 import {
     GET_RETURN_STATUS__REQUEST,
     GET_RETURN_STATUS__SUCCESS,
-    GET_RETURN_STATUS__FAILURE
+    GET_RETURN_STATUS__FAILURE,
+    GO_HOME,
 } from '../actionTypes'
 
 const initialState = {
@@ -19,6 +20,7 @@ export default function(state = initialState, action) {
                 loading: true,
                 error: null,
             }
+
         case GET_RETURN_STATUS__SUCCESS:
             const {exos} = action.payload
             return {
@@ -27,6 +29,7 @@ export default function(state = initialState, action) {
                 loading: false,
                 error: null,
             }
+
         case GET_RETURN_STATUS__FAILURE:
             const {e} = action.payload
             return {
@@ -35,6 +38,13 @@ export default function(state = initialState, action) {
                 loading: false,
                 error: e
             }
+            
+        case GO_HOME:
+            return {
+                ...state,
+                exos: null,
+            }
+
         default:
             return {...state}
     }

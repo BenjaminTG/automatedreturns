@@ -1,7 +1,8 @@
 import {
     START_RETURN__REQUEST,
     START_RETURN__SUCCESS,
-    START_RETURN__FAILURE
+    START_RETURN__FAILURE,
+    GO_HOME,
 } from "../actionTypes"
 
 const initialState = {
@@ -47,6 +48,12 @@ export default function(state = initialState, action) {
                 ...state,
                 loading: false,
                 error: e
+            }
+
+        case GO_HOME:
+            return {
+                ...state,
+                order: null,
             }
 
         default:

@@ -13,7 +13,9 @@ import {
     GET_RETURN_STATUS__REQUEST,
     GET_RETURN_STATUS__SUCCESS,
     GET_RETURN_STATUS__FAILURE,
+    GO_HOME,
 } from "./actionTypes"
+
 
 // #region Start Return
 
@@ -57,6 +59,7 @@ export const startReturn = (orderId, emailAddress) => {
 
 // #endregion
 
+
 // #region Get Return Status
 
 export const getReturnStatusRequest = (orderId, emailAddress) => ({
@@ -94,6 +97,18 @@ export const getReturnStatus = (orderId, emailAddress) => {
                 dispatch(getReturnStatusFailure(e))
                 /* Return error */
             })
+    }
+}
+
+// #endregion
+
+
+// #region Get Return Status
+
+export const goHome = () => {
+    return dispatch => {
+        dispatch({type: GO_HOME})
+        history.push("/")
     }
 }
 
