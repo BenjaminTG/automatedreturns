@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from "react-redux";
-import SubmittedItem from "./submittedItem";
-import Submitted from '../components/order/submitted'
+import OrderItem from "./orderItem";
+import Order from '../components/order/order'
 import moment from 'moment-timezone'
+import ReturnStatus from '../routes/returnstatus'
 
 function prettyDate(rawDate) {
     let momentDate = moment.tz(rawDate);
@@ -10,7 +11,10 @@ function prettyDate(rawDate) {
     return humanDate;
   }
 
+
+
 class OrderDetails extends React.Component {
+    
     
     constructor(props) {
         super(props)
@@ -50,16 +54,16 @@ class OrderDetails extends React.Component {
         }
     }
 
-    submittedItems() {
+    orderItems() {
         if(this.hasOrder())
         {
             return (
                 <div>
                   
-                    <Submitted/>
+                    <Order/>
                     <ul className="bc-return-item-list">
                         {this.props.order.items.map(i =>
-                            <SubmittedItem key={i.level_code} item={i} />
+                            <OrderItem key={i.level_code} item={i} />
                         )}
                     </ul>
                 </div>
@@ -93,12 +97,11 @@ class OrderDetails extends React.Component {
 
     render() {
         return (
-            
             <div>
                 
                 {this.loadingStatus()}
                 {this.orderInfo()}
-                {this.submittedItems()}
+                {this.orderItems()}
                 <hr />
                 {this.errorInfo()}
                 {this.orderJson()}
