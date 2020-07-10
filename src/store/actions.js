@@ -18,11 +18,16 @@ import {
 } from "./actionTypes"
 
 
-export const returnExchangeDetails = (quantityToReturn, quantityToExchange,keepRefundExchange, refundReason, exchangeReason, exchangeToSize, itemComments) => ({
+export const returnExchangeDetails = (quantityToReturn, quantityToExchange, keepRefundExchange, refundReason, exchangeReason, exchangeToSize, itemComments) => ({
     type: RETURN_EXCHANGE_DETAILS,
     payload: {
         quantityToReturn,
-        quantityToExchange
+        quantityToExchange,
+        keepRefundExchange,
+        refundReason,
+        exchangeReason,
+        exchangeToSize,
+        itemComments
     }
 })
 

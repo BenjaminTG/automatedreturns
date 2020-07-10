@@ -6,13 +6,20 @@ import { returnExchangeDetails } from '../store/actions'
 class Dropdown extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {value: ''};   
+      this.state = {
+        items: {
+          keepRefundExchange: this.props.keepRefundExchange,
+          refundReason: this.props.refundReason,
+          exchangeReason: this.props.exchangeReason,
+          exchangeToSize: this.props.exchangeToSize,
+          itemComments: this.props.itemComments
+      }
+  };   
       this.handleChange = this.handleChange.bind(this);
     }
 
     returnExchangeStart(choice, e) {
       this.props.returnExchangeDetails(choice)
-      console.log(choice + " " + "hello")
   }
   
     handleChange(event) {
@@ -25,10 +32,11 @@ class Dropdown extends React.Component {
       return (
         <form>
           <label>
-          <Options
+                          <Options
                                 choices={["Keep Item", "Return for Exchange", "Return for Refund"]}
                                 onChoice={(choice) => this.returnExchangeStart(choice)} />
-            {this.state.choice !== "" &&
+                                <p>{ this.state.choice }</p>
+            {this.props.choice == "Keep Item" &&
             <div>
                <form>
                    <select className="uk-width-1-1 cl-second-dropdown">
@@ -51,6 +59,14 @@ class Dropdown extends React.Component {
       );
     }
   }
+  const mapStateToProps = (state) => ({
+    keepRefundExchange: state.belReducer.keepRefundExchange,
+    refundReason: state.belReducer.refundReason,
+    exchangeReason: state.belReducer.exchangeReason,
+    exchangeToSize: state.belReducer.exchangeToSize,
+    itemComments: state.belReducer.itemComments
+})
+
 
   const stateMappings = state => ({})
   const actionMappings = {
