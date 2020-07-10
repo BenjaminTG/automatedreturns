@@ -3,7 +3,7 @@ export const START_RETURN__REQUEST = "START_RETURN:REQUEST"
 export const START_RETURN__SUCCESS = "START_RETURN:SUCCESS"
 export const START_RETURN__FAILURE = "START_RETURN:FAILURE"
 
-export const DROPDOWN = "DROPDOWN"
+export const RETURN_EXCHANGE_DETAILS = "RETURN_EXCHANGE_DETAILS"
 
 /* When the user clicks on the 'get return status' button */
 export const GET_RETURN_STATUS__REQUEST = "GET_RETURN_STATUS:REQUEST"

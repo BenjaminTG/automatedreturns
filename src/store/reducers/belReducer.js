@@ -1,23 +1,30 @@
-import { DROPDOWN } from '../actionTypes'
+import { RETURN_EXCHANGE_DETAILS } from '../actionTypes'
 
 const initialState = {
     quantityToReturn: 0,
-    quantityToExchange: 0
+    quantityToExchange: 0,
+    keepRefundExchange: null,
+    refundReason: null,
+    exchangeReason: null,
+    exchangeToSize: null,
+    itemComments: null
 }
 
 
 export default function(state = initialState, action) {
     switch(action.type) {
-        case DROPDOWN:
+        case RETURN_EXCHANGE_DETAILS:
           window.alert(action.payload.quantityToReturn);
-            const { quantityToReturn, quantityToExchange } = action.payload
+            const { quantityToReturn, quantityToExchange, keepRefundExchange, refundReason, exchangeReason, exchangeToSize, itemComments } = action.payload
             return {
                 ...state,
                 quantityToReturn,
-                quantityToExchange
-                // keepRefundExchange,
-                // refundReason,
-                // exchangeReason
+                quantityToExchange,
+                keepRefundExchange,
+                refundReason,
+                exchangeReason,
+                exchangeToSize,
+                itemComments
             }
 
         default:

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import FlavorForm from './dropdown'
+import Dropdown from './dropdown'
 
 class SubmittedItem extends React.Component {
 

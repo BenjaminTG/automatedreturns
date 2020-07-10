@@ -1,16 +1,18 @@
 import React from 'react';
 import { connect } from "react-redux";
-import FlavorForm from './dropdown'
+import Dropdown from './dropdown'
 import Options from '../components/options'
-import { dropDown } from '../store/actions'
+import { returnExchangeDetails } from '../store/actions'
 
 class OrderItem extends React.Component {
     constructor(props) {
-        super(props);             
+        super(props);
+          
     }
     returnExchangeStart(choice, e) {
-        this.props.dropDown(choice, 3)
+        this.props.returnExchangeDetails(choice)
     }
+
 
     render() {
         var allowedQty = [this.props.item.quantity_return_allowed];
@@ -57,7 +59,7 @@ class OrderItem extends React.Component {
                         </div>
                         <div className="uk-width-1-3">
                         {this.props.item.quantity_return_allowed > 0 &&
-                            <FlavorForm/>
+                            <Dropdown/>
                           }     
                         </div>
                         <div className="uk-width-1-3">
@@ -81,7 +83,7 @@ class OrderItem extends React.Component {
 
 const stateMappings = state => ({})
 const actionMappings = {
-    dropDown
+    returnExchangeDetails
 }
 
 export default connect(stateMappings, actionMappings)(OrderItem);

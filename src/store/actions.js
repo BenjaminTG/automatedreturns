@@ -10,7 +10,7 @@ import {
     START_RETURN__REQUEST,
     START_RETURN__SUCCESS,
     START_RETURN__FAILURE,
-    DROPDOWN,
+    RETURN_EXCHANGE_DETAILS,
     GET_RETURN_STATUS__REQUEST,
     GET_RETURN_STATUS__SUCCESS,
     GET_RETURN_STATUS__FAILURE,
@@ -18,8 +18,8 @@ import {
 } from "./actionTypes"
 
 
-export const dropDown = (quantityToReturn, quantityToExchange) => ({
-    type: DROPDOWN,
+export const returnExchangeDetails = (quantityToReturn, quantityToExchange,keepRefundExchange, refundReason, exchangeReason, exchangeToSize, itemComments) => ({
+    type: RETURN_EXCHANGE_DETAILS,
     payload: {
         quantityToReturn,
         quantityToExchange
