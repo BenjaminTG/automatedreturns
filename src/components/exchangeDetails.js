@@ -12,12 +12,6 @@ function prettyDate(rawDate) {
     return humanDate;
   }
 
-
-function HeaderComponent()
-{
-    return <h1>{t('welcome.title')}</h1>
-}
-
 class ReturnStatusRoute extends React.Component {
 
     constructor(props) {
@@ -62,24 +56,24 @@ class ReturnStatusRoute extends React.Component {
 
 exoRowItem(item) {
     return (
-        <img src={item.image_url} width="40em" height="40em" />
+        <img className="uk-margin-small-left" src={item.image_url} width="60em" height="60em" />
     )
 }
 
     exoRow(exo) {
         return (
             <div className="uk-grid">
-                <div className="uk-width-1-4">
+                <div className="uk-width-1-4 uk-margin-small-top uk-margin-small-bottom">
                     <p className="uk-margin-small-left uk-margin-remove-bottom">{exo.order_id}</p>
                     <p className="uk-margin-small-left uk-margin-remove-top">{prettyDate(exo.created_at)}</p>
                 </div>
-                <div className="uk-width-1-2">
+                <div className="uk-width-1-2 uk-margin-small-top uk-margin-small-bottom">
                     {exo.items.map(item =>
                         this.exoRowItem(item)
                     )}
                 </div>
-                <div className="uk-width-1-4">
-                    <p>{t(`${exo.customer_message}.error`)}</p>
+                <div className="uk-width-1-4 uk-margin-small-top uk-margin-small-bottom">
+                    <p>{t(`${exo.customer_message}.message`)}</p>
                 </div>
             </div>
         )
@@ -102,7 +96,7 @@ exoRowItem(item) {
         if (this.hasExos()) {
             return (
                 <div>
-                    Order number: {this.props.exos[0].order_id} <HeaderComponent/>
+                    Order number: {this.props.exos[0].order_id} 
                 </div>
             );
         } else {
@@ -148,7 +142,7 @@ exoRowItem(item) {
                 <div>
                     {/* There are {getExoCount()} exchange orders! */}
 
-                    {JSON.stringify(this.props.exos)}
+                    {/* {JSON.stringify(this.props.exos)} */}
                 </div>
 
                 <div>
