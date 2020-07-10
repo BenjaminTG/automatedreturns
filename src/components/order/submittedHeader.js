@@ -9,7 +9,7 @@ function render () {
                 <div className="uk-width-1-1">
                     <div className="uk-grid">
                         <div className="uk-width-1-4">
-                            <p>Returns Request</p>
+                            <p className="uk-margin-small-left">Return Request</p>
                         </div>
                         <div className="uk-width-1-2">
                             <p>Items</p>
