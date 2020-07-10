@@ -39,6 +39,10 @@ class OrderDetails extends React.Component {
         if(this.hasOrder()) {
             return (
                 <div>
+                    <p>Submitted Refund/Exchange message</p>
+                    <p>please allow up to 14 business days for receiving and processing of your parcel at our warehouse.</p>
+                </div>
+                <div>
                    <div className="uk-grid uk-margin-small-right uk-margin-small-left">
                        <div className="uk-width-1-2">
                            <p>Order Number: {this.props.order.order_id}</p>

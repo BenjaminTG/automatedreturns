@@ -2,12 +2,21 @@ import React from 'react';
 import { connect } from "react-redux";
 import { goHome } from '../store/actions';
 import ReturnsHeader from '../components/order/submittedHeader';
+import moment from 'moment-timezone'
+import { useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next';
 
-// function prettyDate(rawDate) {
-//     let momentDate = moment.tz(rawDate);
-//     let humanDate = momentDate.format("LLL");
-//     return humanDate;
-//   }
+function prettyDate(rawDate) {
+    let momentDate = moment.tz(rawDate);
+    let humanDate = momentDate.format("LLL");
+    return humanDate;
+  }
+
+
+function HeaderComponent()
+{
+    return <h1><Trans>welcome.header</Trans></h1>
+}
 
 class ReturnStatusRoute extends React.Component {
 
@@ -50,36 +59,78 @@ class ReturnStatusRoute extends React.Component {
     //     }
     // }
 
+
+exoRowItem(item) {
+    return (
+        <img src={item.image_url} width="40em" height="40em" />
+    )
+}
+
+    exoRow(exo) {
+        return (
+            <div className="uk-grid">
+                <div className="uk-width-1-4">
+                    <p className="uk-margin-small-left uk-margin-remove-bottom">{exo.order_id}</p>
+                    <p className="uk-margin-small-left uk-margin-remove-top">{prettyDate(exo.created_at)}</p>
+                </div>
+                <div className="uk-width-1-2">
+                    {exo.items.map(item =>
+                        this.exoRowItem(item)
+                    )}
+                </div>
+                <div className="uk-width-1-4">
+                    <p><Trans>{exo.customer_message}.error</Trans></p>
+                </div>
+            </div>
+        )
+    }
+
     exoRows() {
         if (this.hasExos()) {
             return (
                 <div>
                     {this.props.exos.map(exo =>
-                        <div className="uk-grid">
-                            <div className="uk-width-1-4">
-
-                            </div>
-                            <div className="uk-width-1-2">
-                                <img src=""></img>
-                            </div>
-                            <div className="uk-width-1-4">
-                                <p>{exo.customer_message}</p>
-                            </div>
-                        </div>
+                        this.exoRow(exo)
                     )}
                 </div>
             );
         }
     }
 
+
+    exoOrderNum() {
+        if (this.hasExos()) {
+            return (
+                <div>
+                    Order number: {this.props.exos[0].order_id} <HeaderComponent/>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <p>Not a valid order number.</p>
+                </div>
+            )
+        }
+    }
+
+
     render() {
         return (
             <div>
-                <div className="uk-grid">
-                <div className="uk-width-1-2"></div>
-                <div className="uk-width-1-2">
-                    <p className="uk-text-right">Have a question? <a href="/contact-us/">Contact Us</a></p>
+                <div>
+                  <p className="uk-text-center bc-returns-header uk-padding-small">{this.exoOrderNum()}</p>
                 </div>
+
+                 <div className="bc-submitted-header">
+                    <p className="uk-text-center uk-text-bold">Submitted Refund/Exchange message</p>
+                    <p className="uk-text-center">please allow up to 14 business days for receiving and processing of your parcel at our warehouse.</p>
+                </div>
+                <div className="uk-grid">
+                    <div className="uk-width-1-2"></div>
+                    <div className="uk-width-1-2">
+                        <p className="uk-text-right uk-margin-top uk-margin-bottom">Have a question? <a href="/contact-us/">Contact Us</a></p>
+                    </div>
                 </div>
                 <ReturnsHeader />
                 <div>
