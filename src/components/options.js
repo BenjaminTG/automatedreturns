@@ -15,15 +15,17 @@ class OptionsComponent extends React.Component {
         )
     }
 
-    renderChoice(choice) {
+    renderChoice(choice, index) {
+        { console.log(this.props.choices[0].name) }
         return (
-            <option key={choice} item={choice}>
-                {choice}
+            <option id = {choice}>
+                {this.props.choices[0].age}
             </option>
         )
     }
 
     renderChoices() {
+      //
     return this.props.choices.map((item, index) => this.renderChoice(index))
     }
 

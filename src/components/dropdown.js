@@ -28,19 +28,24 @@ class Dropdown extends React.Component {
       this.setState({value: event.target.value});  
     }
     render() {
-      var choices = ["Keep Item", "Never Keen"]
-      var choices2 = [{
-        name: "Belen"
+      let choices2 = [{
+        name: "Belen",
+        age: 24
       },
       {
-        name: "Georgina" 
+        name: "Georgina",
+        age: 54
       },
       {
-        name: "Georgia"
+        name: "Georgia",
+        age: 74
       },
       {
-        name: "Paloma"
-      }]
+        name: "Paloma",
+        age: 2
+      }];
+      
+     // console.log(choices2);
       return (
         <form>
           <label>
