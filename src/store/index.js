@@ -10,9 +10,7 @@ console.log(history)
 const middleware = [
     routerMiddleware(history),   
     ReduxThunk
-
 ]
-
 
 let store = createStore(
     createRootReducer(history),
