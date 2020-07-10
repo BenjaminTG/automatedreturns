@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import FlavorForm from './dropdown'
+import OptionForm from './dropdown'
 
 class OrderItem extends React.Component {
 
@@ -18,7 +18,7 @@ class OrderItem extends React.Component {
                 <div className="uk-width-1-2">
                     <div className="uk-grid">
                         <div className="uk-width-1-3">
-                            <img src={this.props.item.image} width="30em" height="30em" />
+                            <img alt={this.props.item.image} src={this.props.item.image} width="30em" height="30em" />
                         </div>
                         <div className="uk-width-1-3 uk-margin-small">
                             <p class="uk-margin-remove">{this.props.item.color} {this.props.item.name}</p>
@@ -37,7 +37,7 @@ class OrderItem extends React.Component {
                                     <input type="number" id="returnQty" name="quantity" value="{this.props.item.quantity_return_allowed}"/>
                                 </form>
                               }
-                              {this.props.item.quantity_return_allowed == 0 &&
+                              {this.props.item.quantity_return_allowed === 0 &&
                                 <p>
                                 This item isn't returnable sorry
                                 </p>
@@ -45,13 +45,13 @@ class OrderItem extends React.Component {
                         </div>
                         <div className="uk-width-1-3">
                         {this.props.item.quantity_return_allowed > 0 &&
-                            <FlavorForm/>
+                            <OptionForm/>
                           }
                              
                         </div>
                         <div className="uk-width-1-3">
                             {this.props.item.quantity_return_allowed > 0 &&
-                                <p><img className="bc-img-upload-icon" src="https://cdn11.bigcommerce.com/s-b972phpqg5/product_images/uploaded_images/camera.png"/></p>
+                                <p><img className="bc-img-upload-icon" alt="upload_Image" src="https://cdn11.bigcommerce.com/s-b972phpqg5/product_images/uploaded_images/camera.png"/></p>
                             }
                         </div>
                     </div>

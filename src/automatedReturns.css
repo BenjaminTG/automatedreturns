@@ -110,3 +110,12 @@
     margin-top: 0px;
   }
 
+  .bc_order_status {
+  border: 1px #333 solid;
+  border-radius: 17px;
+  text-align: center;
+  font-size: 13px;
+  padding: 5px 0px;
+  color: #000;
+  background-color: #b6b6b6;
+  }

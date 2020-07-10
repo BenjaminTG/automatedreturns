@@ -1,12 +1,6 @@
 export default {
-    "welcome": {
-        "title": "Welcome to "
-    },
-    "status": {
-        "title": "Welcome to "
-    },
     "RETURN-REQUEST:AWAITING-RETURN": {
-        "message": "We are waiting for the returns parcel to arrive at the warehouse"
+        "message": "Refund Requested"
     },
     "RETURN-REQUEST:SUBMITTED": {
         "message": "Your order has been submitted and is currently being being processed"
