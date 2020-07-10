@@ -72,8 +72,8 @@ exoRowItem(item) {
                         this.exoRowItem(item)
                     )}
                 </div>
-                <div className="uk-width-1-4 uk-margin-small-top uk-margin-small-bottom">
-                    <p>{t(`${exo.customer_message}.message`)}</p>
+                <div className="uk-width-1-4 uk-margin-small-top uk-margin-small-bottom uk-padding-small">
+                    <p className="bc_order_status">{t(`${exo.customer_message}.message`)}</p>
                 </div>
             </div>
         )

@@ -1,7 +1,4 @@
 import {
-    useHistory
-} from "react-router-dom";
-import {
     ApiService
 } from '../services'
 import history from './history'
