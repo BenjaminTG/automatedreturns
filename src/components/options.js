@@ -17,14 +17,14 @@ class OptionsComponent extends React.Component {
 
     renderChoice(choice) {
         return (
-            <option value={choice}>
+            <option key={choice} item={choice}>
                 {choice}
             </option>
         )
     }
 
     renderChoices() {
-        return this.props.choices.map(choice => this.renderChoice(choice))
+    return this.props.choices.map((item, index) => this.renderChoice(index))
     }
 
     render(choice) {

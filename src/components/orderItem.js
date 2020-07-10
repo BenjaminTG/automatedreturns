@@ -20,6 +20,7 @@ class OrderItem extends React.Component {
         for(var i = 0; i <= allowedQty; i ++){
            elements.push(i);
         }
+        console.log(elements);
         return (
             <div>
      <div>
