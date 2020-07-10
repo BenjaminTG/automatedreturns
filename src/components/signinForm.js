@@ -5,11 +5,10 @@ import {
     startReturn,
     getReturnStatus,
 } from "../store/actions"
-import { useTranslation } from 'react-i18next';
+import t from '../services/i18n'
 
 function HeaderComponent()
 {
-    const { t } = useTranslation();
     return <h1>{t('welcome.title')}</h1>
 }
 

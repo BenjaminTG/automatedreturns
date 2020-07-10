@@ -1,5 +1,5 @@
 // import {useTranslation} from "react-i18next";
-import common from "./translations/en/common.json";
+// import common from "./translations/en/common.json";
 
 // const {t, i18n} = useTranslation('common');
 
@@ -16,7 +16,7 @@ i18n
     keySeparator: ".",                            // language to use
     resources: {
       en: {
-        translation: common
+        // translation: common
       },
     },
   });

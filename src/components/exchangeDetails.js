@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { goHome } from '../store/actions';
 import ReturnsHeader from '../components/order/submittedHeader';
 import moment from 'moment-timezone'
-import { useTranslation } from 'react-i18next';
-import { Trans } from 'react-i18next';
+import t from '../services/i18n'
+
 
 function prettyDate(rawDate) {
     let momentDate = moment.tz(rawDate);
@@ -15,7 +15,7 @@ function prettyDate(rawDate) {
 
 function HeaderComponent()
 {
-    return <h1><Trans>welcome.header</Trans></h1>
+    return <h1>{t('welcome.title')}</h1>
 }
 
 class ReturnStatusRoute extends React.Component {
@@ -79,7 +79,7 @@ exoRowItem(item) {
                     )}
                 </div>
                 <div className="uk-width-1-4">
-                    <p><Trans>{exo.customer_message}.error</Trans></p>
+                    <p>{t(`${exo.customer_message}.error`)}</p>
                 </div>
             </div>
         )
