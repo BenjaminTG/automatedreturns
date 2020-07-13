@@ -58,14 +58,8 @@ class OrderItem extends React.Component {
                         </div>
                         <div className="uk-width-1-3">
                         {this.props.item.quantity_return_allowed > 0 &&
-<<<<<<< HEAD
                             <Dropdown/>
                           }     
-=======
-                            <OptionForm/>
-                          }
-                             
->>>>>>> 6f6d5b3754b3d845043bad1724b69107b6e89041
                         </div>
                         <div className="uk-width-1-3">
                             {this.props.item.quantity_return_allowed > 0 &&
