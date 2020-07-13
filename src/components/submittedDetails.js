@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from "react-redux";
-import SubmittedItem from "./submittedItem";
-import Submitted from '../components/order/submitted'
+import OrderItem from "./orderItem";
+import Order from '../components/order/order'
 import moment from 'moment-timezone'
+import ReturnStatus from '../routes/returnstatus'
 
 function prettyDate(rawDate) {
     let momentDate = moment.tz(rawDate);
@@ -10,7 +11,10 @@ function prettyDate(rawDate) {
     return humanDate;
   }
 
+
+
 class OrderDetails extends React.Component {
+    
     
     constructor(props) {
         super(props)
@@ -35,6 +39,10 @@ class OrderDetails extends React.Component {
         if(this.hasOrder()) {
             return (
                 <div>
+                    <p>Submitted Refund/Exchange message</p>
+                    <p>please allow up to 14 business days for receiving and processing of your parcel at our warehouse.</p>
+                </div>
+                <div>
                    <div className="uk-grid uk-margin-small-right uk-margin-small-left">
                        <div className="uk-width-1-2">
                            <p>Order Number: {this.props.order.order_id}</p>
@@ -50,16 +58,16 @@ class OrderDetails extends React.Component {
         }
     }
 
-    submittedItems() {
+    orderItems() {
         if(this.hasOrder())
         {
             return (
                 <div>
                   
-                    <Submitted/>
+                    <Order/>
                     <ul className="bc-return-item-list">
                         {this.props.order.items.map(i =>
-                            <SubmittedItem key={i.level_code} item={i} />
+                            <OrderItem key={i.level_code} item={i} />
                         )}
                     </ul>
                 </div>
@@ -93,12 +101,11 @@ class OrderDetails extends React.Component {
 
     render() {
         return (
-            
             <div>
                 
                 {this.loadingStatus()}
                 {this.orderInfo()}
-                {this.submittedItems()}
+                {this.orderItems()}
                 <hr />
                 {this.errorInfo()}
                 {this.orderJson()}

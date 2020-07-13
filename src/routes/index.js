@@ -11,6 +11,8 @@ class IndexRoute extends React.Component {
 
     isLoading() {
         return this.props.beginReturnLoading || this.props.getReturnStatusLoading;
+        
+        
     }
 
 

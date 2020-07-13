@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Dropdown from './dropdown'
 import Options from '../components/options'
 import { returnExchangeDetails } from '../store/actions'
+import OptionForm from './dropdown'
 
 class OrderItem extends React.Component {
     constructor(props) {
@@ -27,7 +28,7 @@ class OrderItem extends React.Component {
                 <div className="uk-width-1-2">
                     <div className="uk-grid">
                         <div className="uk-width-1-3">
-                            <img src={this.props.item.image} width="30em" height="30em" />
+                            <img alt={this.props.item.image} src={this.props.item.image} width="30em" height="30em" />
                         </div>
                         <div className="uk-width-1-3 uk-margin-small">
                             <p class="uk-margin-remove">{this.props.item.color} {this.props.item.name}</p>
@@ -49,7 +50,7 @@ class OrderItem extends React.Component {
                                 <p>{this.props.item.validation_errors}</p>
                             </div>
                               }
-                              {this.props.item.quantity_return_allowed == 0 &&
+                              {this.props.item.quantity_return_allowed === 0 &&
                                 <p>
                                     {!!(this.props.item.validation_errors) ? this.props.item.validation_errors : "" }
                                 </p>
@@ -57,12 +58,18 @@ class OrderItem extends React.Component {
                         </div>
                         <div className="uk-width-1-3">
                         {this.props.item.quantity_return_allowed > 0 &&
+<<<<<<< HEAD
                             <Dropdown/>
                           }     
+=======
+                            <OptionForm/>
+                          }
+                             
+>>>>>>> 6f6d5b3754b3d845043bad1724b69107b6e89041
                         </div>
                         <div className="uk-width-1-3">
                             {this.props.item.quantity_return_allowed > 0 &&
-                                <p><img className="bc-img-upload-icon" src="https://cdn11.bigcommerce.com/s-b972phpqg5/product_images/uploaded_images/camera.png"/></p>
+                                <p><img className="bc-img-upload-icon" alt="upload_Image" src="https://cdn11.bigcommerce.com/s-b972phpqg5/product_images/uploaded_images/camera.png"/></p>
                             }
                         </div>
                     </div>

@@ -44,7 +44,44 @@ class ApiService {
                         ],
                         "validation_errors": [
                             "Some of these items have already been returned."
-                        ]
+                        ],
+                        "reasons": {
+                            "return": [
+                                {
+                                    "reason_code": "FAULTY",
+                                    "allowed": true,
+                                    "validation_errors": []
+                                },
+                                {
+                                    "reason_code": "WRONG_COLOUR",
+                                    "allowed": true,
+                                    "validation_errors": []
+                                },
+                                {
+                                    "reason_code": "WRONG_ITEM",
+                                    "allowed": true,
+                                    "validation_errors": []
+                                },
+                                {
+                                    "reason_code": "SIZE_TOO_SMALL",
+                                    "allowed": false,
+                                    "validation_errors": ["ORDER:AGE_LIMIT_EXCEEDED"]
+                                },
+                                {
+                                    "reason_code": "SIZE_TOO_BIG",
+                                    "allowed": false,
+                                    "validation_errors": ["ORDER:AGE_LIMIT_EXCEEDED"]
+                                },
+                                {
+                                    "reason_code": "CHANGE_OF_MIND",
+                                    "allowed": false,
+                                    "validation_errors": ["ORDER:AGE_LIMIT_EXCEEDED"]
+                                }
+                            ],
+                            "exchange": [
+                            ]
+                        }
+                        
                     },
                     {
                         "level_code": "EFGH_5392",
@@ -60,7 +97,43 @@ class ApiService {
                         ],
                         "validation_errors": [
                             "Sale items are not eligible to be returned."
-                        ]
+                        ],
+                        "reasons": {
+                            "return": [
+                                {
+                                    "reason_code": "FAULTY",
+                                    "allowed": true,
+                                    "validation_errors": []
+                                },
+                                {
+                                    "reason_code": "WRONG_COLOUR",
+                                    "allowed": true,
+                                    "validation_errors": []
+                                },
+                                {
+                                    "reason_code": "WRONG_ITEM",
+                                    "allowed": true,
+                                    "validation_errors": []
+                                },
+                                {
+                                    "reason_code": "SIZE_TOO_SMALL",
+                                    "allowed": false,
+                                    "validation_errors": ["ORDER:AGE_LIMIT_EXCEEDED"]
+                                },
+                                {
+                                    "reason_code": "SIZE_TOO_BIG",
+                                    "allowed": false,
+                                    "validation_errors": ["ORDER:AGE_LIMIT_EXCEEDED"]
+                                },
+                                {
+                                    "reason_code": "CHANGE_OF_MIND",
+                                    "allowed": false,
+                                    "validation_errors": ["ORDER:AGE_LIMIT_EXCEEDED"]
+                                }
+                            ],
+                            "exchange": [
+                            ]
+                        }
                     }
                 ]
             }
@@ -77,11 +150,22 @@ class ApiService {
         let response = {
             data: {
                 "exos": [{
-                    "reference_id": "b5dfff04-258b-4f45-a752-2939ca2fff30",
-                    "created_at": 1587132745,
-                    "updated_at": 1587342761,
+                    "reference_id": "cust-ref-0001",
+                    "order_id": 12345,
+                    "created_at": "2020-06-25T12:35:42",
+                    "updated_at": "2020-06-25T12:35:42",
                     "customer_message": "RETURN-REQUEST:AWAITING-RETURN",
                     "items": [{
+                        "level_code": "ABC_1234",
+                        "name": "Rainbow Shoes",
+                        "size": "Age Group Adult,ApproxAge ,CM 25.4,EURO 41,WOMENS UK ,WOMENS US ,MENS UK 7,MENS US 8,KIDS UK ,KIDS US ",
+                        "colour": "Rainbow",
+                        "image_url": "https://res.cloudinary.com/brandcollective-ap21/image/upload/v1563954927/106380-21835/500703/BLK/28.jpg",
+                        "unit_price": "-30.00",
+                        "quantity": "-1.0",
+                        "total_price": "-30.00"
+                    },
+                    {
                         "level_code": "ABC_1234",
                         "name": "Rainbow Shoes",
                         "size": "Age Group Adult,ApproxAge ,CM 25.4,EURO 41,WOMENS UK ,WOMENS US ,MENS UK 7,MENS US 8,KIDS UK ,KIDS US ",

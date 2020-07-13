@@ -1,10 +1,16 @@
-import React from 'react'
+import React from 'react';
 import { connect } from "react-redux";
 import Popup from "reactjs-popup";
 import {
     startReturn,
     getReturnStatus,
 } from "../store/actions"
+import t from '../services/i18n'
+
+function HeaderComponent()
+{
+    return <h1>{t('welcome.title')}</h1>
+}
 
 const Card = ({title}) => (
     <div className="card">
@@ -52,6 +58,7 @@ class SignInForm extends React.Component {
     render() {
         return (
             <div>
+               
                 <form className="formContainer" onSubmit={(e) => this.handleSubmit(e)}>
                         <Popup trigger={<p className="signInHint">?</p>} position="right top" on="hover">
                         <Card title="signInHintPopup"/>
