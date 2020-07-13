@@ -14,7 +14,7 @@ const initialState = {
 export default function(state = initialState, action) {
     switch(action.type) {
         case RETURN_EXCHANGE_DETAILS:
-          window.alert(action.payload.quantityToReturn);
+     //     window.alert(action.payload.quantityToReturn);
             const { quantityToReturn, quantityToExchange, keepRefundExchange, refundReason, exchangeReason, exchangeToSize, itemComments } = action.payload
             return {
                 ...state,
