@@ -27,30 +27,15 @@ class Dropdown extends React.Component {
     handleChange(event) {
       this.setState({value: event.target.value});  
     }
-    render() {
-      let choices2 = [{
-        name: "Belen",
-        age: 24
-      },
-      {
-        name: "Georgina",
-        age: 54
-      },
-      {
-        name: "Georgia",
-        age: 74
-      },
-      {
-        name: "Paloma",
-        age: 2
-      }];
-      
-     // console.log(choices2);
+    render() { 
+      var choices = {"FAULTY": "The product has a fault or defect",
+      "SIZE_TOO_SMALL": "The product is too small for me to wear",
+      "WRONG_ITEM": "The wrong product was in the box"};
       return (
         <form>
           <label>
                           <Options
-                                choices={choices2}
+                                choices={choices}
                                 onChoice={(choice) => this.returnExchangeStart(choice)} />
                                 <p>{ this.state.choice }</p>
             {this.props.choice == "Keep Item" &&

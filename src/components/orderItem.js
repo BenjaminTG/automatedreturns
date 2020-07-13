@@ -12,15 +12,12 @@ class OrderItem extends React.Component {
     returnExchangeStart(choice, e) {
         this.props.returnExchangeDetails(choice)
     }
-
-
     render() {
         var allowedQty = [this.props.item.quantity_return_allowed];
         var elements = [];
         for(var i = 0; i <= allowedQty; i ++){
            elements.push(i);
         }
-     //   console.log(elements);
         return (
             <div>
      <div>
