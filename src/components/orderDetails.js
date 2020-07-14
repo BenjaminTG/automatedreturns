@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import OrderItem from "./orderItem";
 import Order from '../components/order/order'
 import moment from 'moment-timezone'
+import TermsPage from '../components/termsPage'
 
 function prettyDate(rawDate) {
     let momentDate = moment.tz(rawDate);
@@ -99,6 +100,8 @@ class OrderDetails extends React.Component {
                 {this.loadingStatus()}
                 {this.orderInfo()}
                 {this.orderItems()}
+                <hr />
+                <TermsPage/>
                 <hr />
                 {this.errorInfo()}
                 {this.orderJson()}
