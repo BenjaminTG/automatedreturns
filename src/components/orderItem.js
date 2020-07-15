@@ -2,18 +2,27 @@ import React from 'react';
 import { connect } from "react-redux";
 import Dropdown from './dropdown'
 import Options from '../components/options'
+import Input from './input'
 import { returnExchangeDetails } from '../store/actions'
 
 class OrderItem extends React.Component {
     constructor(props) {
         super(props);
-          
+        this.state = {
+            quantityToReturn: 0,
+            quantityToExchange: 0,
+            itemComments: "",
+        }     
     }
-    returnExchangeStart(choice, e) {
-        this.props.returnExchangeDetails(choice)
+    returnExchangeDetails(choice) {
+        this.setState({
+            quantityToReturn: choice
+        })
     }
     render() {
-        var allowedQty = [this.props.item.quantity_return_allowed];
+        // lift state up
+        console.log(this.state.quantityToReturn)
+        var allowedQty = this.props.item.quantity_return_allowed;
         var elements = [];
         for(var i = 0; i <= allowedQty; i ++){
            elements.push(i);
@@ -45,7 +54,7 @@ class OrderItem extends React.Component {
                               <div>
                                    <Options
                                 choices={elements}
-                                onChoice={(choice) => this.returnExchangeStart(choice)} />
+                                onChoice={(choice) => this.returnExchangeDetails(choice)} />
                                 <p>{this.props.item.validation_errors}</p>
                             </div>
                               }
@@ -58,7 +67,8 @@ class OrderItem extends React.Component {
                         <div className="uk-width-1-3">
                         {this.props.item.quantity_return_allowed > 0 &&
                             <Dropdown/>
-                          }     
+                          } 
+                          <Input />  
                         </div>
                         <div className="uk-width-1-3">
                             {this.props.item.quantity_return_allowed > 0 &&
@@ -78,10 +88,4 @@ class OrderItem extends React.Component {
     }
 }
 
-
-const stateMappings = state => ({})
-const actionMappings = {
-    returnExchangeDetails
-}
-
-export default connect(stateMappings, actionMappings)(OrderItem);
+export default OrderItem;

@@ -8,7 +8,7 @@ class BeginReturnRoute extends React.Component {
     render() {
         return (
             <div>
-                <OrderDetails />
+                <OrderDetails/>
 
                 <button onClick={() => this.props.goHome()}>Go Home</button>
 

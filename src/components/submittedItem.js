@@ -45,7 +45,7 @@ class SubmittedItem extends React.Component {
                         </div>
                         <div className="uk-width-1-3">
                         {this.props.item.quantity_return_allowed > 0 &&
-                            <FlavorForm/>
+                          
                           }
                              
                         </div>

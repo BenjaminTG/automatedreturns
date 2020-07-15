@@ -6,69 +6,54 @@ import { returnExchangeDetails } from '../store/actions'
 class Dropdown extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {
-        items: {
-          keepRefundExchange: this.props.keepRefundExchange,
-          refundReason: this.props.refundReason,
-          exchangeReason: this.props.exchangeReason,
-          exchangeToSize: this.props.exchangeToSize,
-          itemComments: this.props.itemComments
-      }
-  };   
-
-      this.handleChange = this.handleChange.bind(this);
+          this.state = {
+                keepRefundExchange: "",
+                refundReason: "",
+                exchangeReason: "",
+                exchangeToSize: "",
+      };   
     }
 
-    returnExchangeStart(choice, e) {
-      this.props.returnExchangeDetails(choice, 2, 3);
-      return this.props.keepRefundExchange;
-  }
-  
-    handleChange(event) {
-      this.setState({value: event.target.value});  
+    toReturnExchange(choice) {
+      this.setState({
+        keepRefundExchange: choice
+      })
     }
+      returnExchangeDetails(choice) {
+        this.setState({
+          exchangeReason: choice
+        })
+    }
+
     render() { 
-      var choices = {"FAULTY": "The product has a fault or defect",
-      "SIZE_TOO_SMALL": "The product is too small for me to wear",
-      "WRONG_ITEM": "The wrong product was in the box"};
+      // lift state up
+      console.log(this.state.exchangeReason + " " + this.state.keepRefundExchange)
+      let initalChoices = ["Keep Item", "Return for Exchange", "Return for Refund"];
+      let choices = {
+        "FAULTY": "The product has a fault or defect",
+        "SIZE_TOO_SMALL": "The product is too small for me to wear",
+        "WRONG_ITEM": "The wrong product was in the box"
+    };
       return (
+        <div>
         <form>
           <label>
                           <Options
+                                choices={initalChoices}
+                                onChoice={(choice) => this.toReturnExchange((choice))} />
+
+
+           {this.state.keepRefundExchange === "Keep Item" || !!(this.state.keepRefundExchange) &&
+                         <Options
                                 choices={choices}
-                                onChoice={(choice) => this.returnExchangeStart(choice)} />
-                                <p>{ this.state.choice }</p>
-            {this.props.choice == "Keep Item" &&
-            <div>
-               <form>
-                   <select className="uk-width-1-1 cl-second-dropdown">
-                    <option value="" selected disabled hidden>Reason for Return...</option>
-                    <option value="incorrect">Incorrect item/colour received</option>
-                    <option value="tooBig">Too Big</option>
-                    <option value="tooSmall">Too Small</option>
-                    <option value="noLike">Doesn't suit/didn't like</option>
-                    <option value="faulty">Faulty</option>
-                    </select>
-              </form>
-              <textarea className="uk-width-1-1" name="comments"></textarea>
-
-              </div>
-            }
-          </label>
+                                onChoice={(choice) => this.returnExchangeDetails((choice))} />
+          }              
+        </label>
         </form>
-
-
+        </div>
       );
     }
   }
-  const mapStateToProps = (state) => ({
-    keepRefundExchange: state.belReducer.keepRefundExchange,
-    refundReason: state.belReducer.refundReason,
-    exchangeReason: state.belReducer.exchangeReason,
-    exchangeToSize: state.belReducer.exchangeToSize,
-    itemComments: state.belReducer.itemComments
-})
-
 
   const stateMappings = state => ({})
   const actionMappings = {

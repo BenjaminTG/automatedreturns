@@ -1,4 +1,4 @@
-import { RETURN_EXCHANGE_DETAILS } from '../actionTypes'
+import { UPDATE_RETURN_EXCHANGE_DETAILS } from '../actionTypes'
 
 const initialState = {
     quantityToReturn: 0,
@@ -13,7 +13,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
     switch(action.type) {
-        case RETURN_EXCHANGE_DETAILS:
+        case UPDATE_RETURN_EXCHANGE_DETAILS:
      //     window.alert(action.payload.quantityToReturn);
             const { quantityToReturn, quantityToExchange, keepRefundExchange, refundReason, exchangeReason, exchangeToSize, itemComments } = action.payload
             return {
@@ -28,29 +28,7 @@ export default function(state = initialState, action) {
             }
 
         default:
+            return {...state};
 
-            // CAN ALSO DO THIS
-            let newState = {
-                name: state.name,
-                age: state.age,
-                cereal: state.cereal,
-                counter: state.counter
-            }
-
-          //  newState.counter = newState.counter + 1
-
-            return newState;
-
-
-
-            // CAN DO THIS
-            return {
-                ...state,
-                counter: state.counter + 1
-            }
-
-            // DON'T DO THIS
-            // state.counter = state.counter + 1;
-            // return state;
     }
 }

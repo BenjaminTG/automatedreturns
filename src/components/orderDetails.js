@@ -17,7 +17,7 @@ function prettyDate(rawDate) {
       render () {
           return (
               <div>
-                  <p>1</p>
+                  <p>{this.props.count}</p>
               </div>
           )
       }
@@ -29,7 +29,7 @@ function prettyDate(rawDate) {
     }
     render () {
         return (
-            <div>$1.00</div>
+            <div>{this.props.amount}</div>
         )
     }
 }
@@ -44,6 +44,14 @@ class OrderDetails extends React.Component {
                 quantityToExchange: this.props.quantityToExchange
             }
         }
+    }
+
+    calculateQuantityreturned () {
+        // function here
+    }
+
+    calculateTotalRefund() {
+        // function here
     }
 
     hasOrder() {
@@ -61,7 +69,7 @@ class OrderDetails extends React.Component {
         }
     }
 
-    orderInfo() {
+    orderInfo(props) {
         if(this.hasOrder()) {
             return (
                 <div>
@@ -89,7 +97,7 @@ class OrderDetails extends React.Component {
                     <Order/>
                     <ul className="bc-return-item-list">
                         {this.props.order.items.map(i =>
-                            <OrderItem key={i.level_code} item={i}   onItemUpdated={(item) => this.updateItem(item)}  />
+                            <OrderItem key={i.level_code} item={i} onItemUpdated={(item) => this.updateItem(item)} returnExchangeDetails={(data) => this.onOrderItemUpdated(data)} />
                         )}
                     </ul>
                 </div>
@@ -171,8 +179,14 @@ const mapStateToProps = (state) => ({
     loading: state.createReturn.loading,
     error: state.createReturn.error,
     order: state.createReturn.order,
-    quantityToReturn: state.belReducer.quantityToReturn,
-    quantityToExchange: state.belReducer.quantityToExchange
+    quantityToReturn: state.updateReturnExchange.quantityToReturn,
+    quantityToExchange: state.updateReturnExchange.quantityToExchange,
+    keepRefundExchange: state.updateReturnExchange.keepRefundExchange,
+    refundReason: state.updateReturnExchange.refundReason,
+    exchangeReason: state.updateReturnExchange.exchangeReason,
+    exchangeToSize: state.updateReturnExchange.exchangeToSize,
+    itemComments: state.updateReturnExchange.itemComments
+    
 })
 
 export default connect(mapStateToProps)(OrderDetails);
