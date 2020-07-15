@@ -1,7 +1,7 @@
 import React from 'react';
 import OrderDetails from '../components/orderDetails';
 import { connect } from 'react-redux';
-import { goHome } from '../store/actions';
+import { goHome, goShipping } from '../store/actions';
 
 class BeginReturnRoute extends React.Component {
 
@@ -9,6 +9,7 @@ class BeginReturnRoute extends React.Component {
         return (
             <div>
                 <OrderDetails />
+                <div className="uk-text-right"><button className="bc-returns-button" onClick={() => this.props.goShipping()}>Next</button></div>
                 
                 <button onClick={() => this.props.goHome()}>Go Home</button>
             
@@ -24,7 +25,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    goHome
+    goHome, goShipping
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BeginReturnRoute);

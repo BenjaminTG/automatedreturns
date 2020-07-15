@@ -1,8 +1,13 @@
 import React from 'react';
-import { goHome } from '../store/actions';
+import { goHome, goBack, goTerms } from '../store/actions';
 import { connect } from 'react-redux';
 
-class BeginReturnRoute extends React.Component {
+class PreparingYourItemsRoute extends React.Component {
+    /* Prevents default form submission behaviour*/
+    onCancelClicked(e) {
+        e.preventDefault()
+        this.props.goBack()
+    }
 render () {
     return (
         <div>
@@ -18,8 +23,8 @@ render () {
                     </div>
                     <form>  
                     <div className="bc-selection-div uk-margin">
-                        <button className="bc-returns-button" onClick={() => this.props.goHome()}>Cancel</button>
-                        <button className="bc-returns-button uk-margin-left" onclick="if(!this.form.checkbox.checked){alert('You must agree to the terms first.');return false}">Continue</button>
+                        <button className="bc-returns-button" onClick={(e) => this.onCancelClicked(e)}>Cancel</button>
+                        <button className="bc-returns-button uk-margin-left" onClick={() => this.props.goTerms()}>Continue</button>
                     </div>
                 </form>
         </div>
@@ -33,7 +38,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    goHome
+    goHome, goBack, goTerms
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BeginReturnRoute);
+export default connect(mapStateToProps, mapDispatchToProps)(PreparingYourItemsRoute);

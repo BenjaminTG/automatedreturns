@@ -11,6 +11,10 @@ import {
     GET_RETURN_STATUS__SUCCESS,
     GET_RETURN_STATUS__FAILURE,
     GO_HOME,
+    GO_BACK,
+    GO_SHIPPING,
+    GO_PREPARE,
+    GO_TERMS,
 } from "./actionTypes"
 
 
@@ -108,5 +112,34 @@ export const goHome = () => {
         history.push("/")
     }
 }
+
+export const goBack = () => {
+    return dispatch => {
+        dispatch({type: GO_BACK})
+        history.goBack()
+    }
+}
+
+export const goShipping = () => {
+    return dispatch => {
+        dispatch({type: GO_SHIPPING})
+        history.push("/returns/shippingcosts")
+    }
+}
+
+export const goPrepare = () => {
+    return dispatch => {
+        dispatch({type: GO_PREPARE})
+        history.push("/returns/preparingyouritems")
+    }
+}
+
+export const goTerms = () => {
+    return dispatch => {
+        dispatch({type: GO_TERMS})
+        history.push("/returns/terms")
+    }
+}
+
 
 // #endregion
