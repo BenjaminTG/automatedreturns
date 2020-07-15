@@ -15,25 +15,22 @@ class Dropdown extends React.Component {
     }
 
     toReturnExchange(choice) {
-      this.setState({
-        keepRefundExchange: choice
-      })
+      this.setState({keepRefundExchange: choice})
+      this.props.dropDownResponses(this.state.keepRefundExchange)
     }
       returnExchangeDetails(choice) {
-        this.setState({
-          exchangeReason: choice
-        })
+        this.setState({exchangeReason: choice})
+        this.props.dropDownResponses(this.state.exchangeReason)
     }
 
     render() { 
-      // lift state up
-      console.log(this.state.exchangeReason + " " + this.state.keepRefundExchange)
       let initalChoices = ["Keep Item", "Return for Exchange", "Return for Refund"];
       let choices = {
         "FAULTY": "The product has a fault or defect",
         "SIZE_TOO_SMALL": "The product is too small for me to wear",
         "WRONG_ITEM": "The wrong product was in the box"
     };
+
       return (
         <div>
         <form>
@@ -55,9 +52,4 @@ class Dropdown extends React.Component {
     }
   }
 
-  const stateMappings = state => ({})
-  const actionMappings = {
-    returnExchangeDetails
-  }
-
-export default connect(stateMappings, actionMappings)(Dropdown);
+export default Dropdown;

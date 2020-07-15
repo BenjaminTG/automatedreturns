@@ -28,7 +28,7 @@ function prettyDate(rawDate) {
         super(props)
     }
     render () {
-        return (
+        return ( 
             <div>{this.props.amount}</div>
         )
     }

@@ -6,27 +6,34 @@ import Input from './input'
 import { returnExchangeDetails } from '../store/actions'
 
 class OrderItem extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            quantityToReturn: 0,
-            quantityToExchange: 0,
-            itemComments: "",
-        }     
+  constructor(props) {
+    super(props);
+    this.state = {
+      quantityToReturn: 0,
+      quantityToExchange: 0,
+      keepRefundExchange: "",
+      itemComments: ""
     }
-    returnExchangeDetails(choice) {
-        this.setState({
-            quantityToReturn: choice
-        })
+  }
+  itemCommentCallBack = (itemComments) => {
+    this.setState({itemComments: itemComments})
+    // can call on these by state now
+  }
+  dropDownCallBack = (choice) => {
+    this.setState({keepRefundExchange: choice})
+        // can call on these by state now
+  }
+  returnExchangeDetails(choice) {
+    this.setState({
+      quantityToReturn: choice
+    })
+  }
+  render() {
+    var allowedQty = this.props.item.quantity_return_allowed;
+    var elements = [];
+    for(var i = 0; i <= allowedQty; i ++){
+      elements.push(i);
     }
-    render() {
-        // lift state up
-        console.log(this.state.quantityToReturn)
-        var allowedQty = this.props.item.quantity_return_allowed;
-        var elements = [];
-        for(var i = 0; i <= allowedQty; i ++){
-           elements.push(i);
-        }
         return (
             <div>
      <div>
@@ -66,9 +73,11 @@ class OrderItem extends React.Component {
                         </div>
                         <div className="uk-width-1-3">
                         {this.props.item.quantity_return_allowed > 0 &&
-                            <Dropdown/>
+                            <Dropdown dropDownResponses = {this.dropDownCallBack}/>
                           } 
-                          <Input />  
+                          {!!(this.state.keepRefundExchange) &&
+                              <Input itemComment = {this.itemCommentCallBack}/>  
+                          } 
                         </div>
                         <div className="uk-width-1-3">
                             {this.props.item.quantity_return_allowed > 0 &&

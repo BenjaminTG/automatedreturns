@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { returnExchangeDetails } from '../store/actions'
 
 class Input extends React.Component {
     constructor(props) {
@@ -15,8 +14,7 @@ class Input extends React.Component {
 
       updateCommentInput(){
         this.setState({itemComments: this.state.itemComments});
-        this.props.returnExchangeDetails(this.state.itemComments)
-        console.log({...this.state})
+        this.props.itemComment(this.state.itemComments);
      }
     render () {
         return (
@@ -27,10 +25,4 @@ class Input extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-})
-
-const mapDispatchToProps = {
-    returnExchangeDetails
-}
-export default connect(mapStateToProps,mapDispatchToProps)(Input);
+export default Input;

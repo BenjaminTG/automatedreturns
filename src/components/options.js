@@ -3,7 +3,11 @@ import React from "react";
 class OptionsComponent extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      selectedReason: "",
+    }
   }
+
 
   renderChoices() {
     let elements = [];
