@@ -17,15 +17,15 @@ class OrderItem extends React.Component {
   }
   itemCommentCallBack = (itemComments) => {
     this.setState({itemComments: itemComments})
-    // can call on these by state now
   }
   dropDownCallBack = (choice) => {
     this.setState({keepRefundExchange: choice})
-        // can call on these by state now
   }
   returnExchangeDetails(choice) {
+    alert(this.state.quantityToReturn)
     this.setState({quantityToReturn: choice})
     this.props.qtyResponses(this.state.quantityToReturn)
+
   }
   render() {
     var allowedQty = this.props.item.quantity_return_allowed;
