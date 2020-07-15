@@ -10,3 +10,15 @@ export const GET_RETURN_STATUS__FAILURE = "GET_RETURN_STATUS:FAILURE"
 
 /* Return to the home page */
 export const GO_HOME = "GO_HOME"
+
+/* Return to last page */
+export const GO_BACK = "GO_BACK"
+
+/* Go to Shipping Page */
+export const GO_SHIPPING = "GO_SHIPPING"
+
+/* Return to the home page */
+export const GO_TERMS = "GO_TERMS"
+
+/* Return to the home page */
+export const GO_PREPARE = "GO_PREPARE"
