@@ -10,49 +10,22 @@ function prettyDate(rawDate) {
     return humanDate;
   }
 
-  class ExchangeTotal extends React.Component {
-      constructor(props) {
-          super(props)
-      }
-      render () {
-          return (
-              <div>
-                  <p>{this.props.count}</p>
-              </div>
-          )
-      }
-  }
-
-  class RefundTotal extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-    render () {
-        return ( 
-            <div>{this.props.amount}</div>
-        )
-    }
-}
 
 class OrderDetails extends React.Component {
     
     constructor(props) {
         super(props)
         this.state = {
-            items: {
-                quantityToReturn: this.props.quantityToReturn,
-                quantityToExchange: this.props.quantityToExchange
-            }
+            quantityToReturn: 0,
+            quantityToExchange: 0,
         }
     }
 
-    calculateQuantityreturned () {
-        // function here
-    }
-
-    calculateTotalRefund() {
-        // function here
-    }
+    dropDownCallBack = (choice) => {
+        this.setState({quantityToReturn: choice})
+          console.log(this.state.quantityToReturn);
+          console.log(this.props)
+      }
 
     hasOrder() {
         return (
@@ -69,7 +42,7 @@ class OrderDetails extends React.Component {
         }
     }
 
-    orderInfo(props) {
+    orderInfo() {
         if(this.hasOrder()) {
             return (
                 <div>
@@ -97,7 +70,7 @@ class OrderDetails extends React.Component {
                     <Order/>
                     <ul className="bc-return-item-list">
                         {this.props.order.items.map(i =>
-                            <OrderItem key={i.level_code} item={i} onItemUpdated={(item) => this.updateItem(item)} returnExchangeDetails={(data) => this.onOrderItemUpdated(data)} />
+                            <OrderItem key={i.level_code} item={i} onItemUpdated={(item) => this.updateItem(item)} qtyResponses = {this.dropDownCallBack}/>
                         )}
                     </ul>
                 </div>
@@ -115,14 +88,14 @@ class OrderDetails extends React.Component {
                     </div>
                     <div className="uk-width-1-2">
                         <p className="uk-margin-remove uk-text-bold">Total Refunded</p>
-                        {this.props.quantityToExchange > 0 ? <p className="uk-margin-remove uk-text-bold">Total Exchange</p> : ''}
+                        {this.state.quantityToExchange > 0 ? <p className="uk-margin-remove uk-text-bold">Total Exchange</p> : ''}
                     </div>
                     <div className="uk-width-1-2">
                         <div>
-                           {this.props.quantityToReturn > 0 ? <RefundTotal/> : '$0.00'}    
+                           {this.state.quantityToReturn > 0 ? <RefundTotal qty={this.state.quantityToReturn} /> : '$0.00'}    
                         </div>
                         <div>
-                            {this.props.quantityToExchange > 0 ? <ExchangeTotal/> : ''} 
+                            {this.state.quantityToExchange > 0 ? <ExchangeTotal/> : ''} 
                         </div>
                     </div>
                     
@@ -171,6 +144,37 @@ class OrderDetails extends React.Component {
         )
     }
 
+}
+
+class ExchangeTotal extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    render () {
+        return (
+            <div>
+                <p>{this.props.count}</p>
+            </div>
+        )
+    }
+}
+
+
+class RefundTotal extends React.Component {
+  constructor(props) {
+      super(props)
+  }
+  calRefundTotal(){
+    const qty = this.props.qty;
+    const price = 100;
+    const result = price * qty;
+    return result;
+  }
+  render () {
+      return ( 
+          <div>${this.calRefundTotal()}</div>
+      )
+  }
 }
 
 /* pulls in returns info from create-returns.js */

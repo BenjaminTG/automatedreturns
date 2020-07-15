@@ -24,9 +24,8 @@ class OrderItem extends React.Component {
         // can call on these by state now
   }
   returnExchangeDetails(choice) {
-    this.setState({
-      quantityToReturn: choice
-    })
+    this.setState({quantityToReturn: choice})
+    this.props.qtyResponses(this.state.quantityToReturn)
   }
   render() {
     var allowedQty = this.props.item.quantity_return_allowed;
