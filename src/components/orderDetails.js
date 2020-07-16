@@ -92,7 +92,8 @@ class OrderDetails extends React.Component {
                     </div>
                     <div className="uk-width-1-2">
                         <div>
-                           {this.state.quantityToReturn > 0 ? <RefundTotal qty={this.state.quantityToReturn} /> : '$0.00'}    
+                            <RefundTotal qty={this.state.quantityToReturn} />
+                           {/* {this.state.quantityToReturn > 0 ? <RefundTotal qty={this.state.quantityToReturn} /> : '$0.00'}     */}
                         </div>
                         <div>
                             {this.state.quantityToExchange > 0 ? <ExchangeTotal/> : ''} 
@@ -172,7 +173,9 @@ class RefundTotal extends React.Component {
   }
   render () {
       return ( 
-          <div>${this.calRefundTotal()}</div>
+          <div>
+          ${this.calRefundTotal()}
+          </div>
       )
   }
 }

@@ -22,7 +22,6 @@ class OrderItem extends React.Component {
     this.setState({keepRefundExchange: choice})
   }
   returnExchangeDetails(choice) {
-    alert(this.state.quantityToReturn)
     this.setState({quantityToReturn: choice})
     this.props.qtyResponses(this.state.quantityToReturn)
 
