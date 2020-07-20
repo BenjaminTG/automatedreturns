@@ -10,11 +10,55 @@ function prettyDate(rawDate) {
     return humanDate;
   }
 
+  class ExchangeTotal extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    render () {
+        return (
+            <div>
+                <p>{this.props.count}</p>
+            </div>
+        )
+    }
+}
+
+
+class RefundTotal extends React.Component {
+  constructor(props) {
+      super(props)
+  }
+  calRefundTotal(){
+    const qty = this.props.qty;
+    const price = 100;
+    const result = price * qty;
+    return result;
+  }
+  render () {
+      return ( 
+          <div>
+          ${this.calRefundTotal()}
+          </div>
+      )
+  }
+}
+
 class OrderDetails extends React.Component {
     
     constructor(props) {
         super(props)
+        this.state = {
+            quantityToReturn: 0,
+            quantityToExchange: 0,
+        }
     }
+
+    dropDownCallBack = (choice) => {
+        this.setState({quantityToReturn: choice})
+          console.log(this.state.quantityToReturn);
+          console.log(this.props)
+      }
+
 
     hasOrder() {
         return (
@@ -59,9 +103,37 @@ class OrderDetails extends React.Component {
                     <Order/>
                     <ul className="bc-return-item-list">
                         {this.props.order.items.map(i =>
-                            <OrderItem key={i.level_code} item={i} />
+                                      <OrderItem key={i.level_code} item={i} onItemUpdated={(item) => this.updateItem(item)} qtyResponses = {this.dropDownCallBack}/>
                         )}
                     </ul>
+                </div>
+            );
+        }
+    }
+
+    refundReturnTotal () {
+        if(this.hasOrder())
+        {
+            return (
+                <div className="uk-width-1-1 uk-grid" uk-grid>
+                    <div className="uk-width-1-1">
+                        <p className="uk-text-bold uk-margin-remove">*Shipping will need to be paid for if total refund is under $60</p>
+                    </div>
+                    <div className="uk-width-1-2">
+                        <p className="uk-margin-remove uk-text-bold">Total Refunded</p>
+                        {this.state.quantityToExchange > 0 ? <p className="uk-margin-remove uk-text-bold">Total Exchange</p> : ''}
+                    </div>
+                    <div className="uk-width-1-2">
+                        <div>
+                            <RefundTotal qty={this.state.quantityToReturn} />
+                           {/* {this.state.quantityToReturn > 0 ? <RefundTotal qty={this.state.quantityToReturn} /> : '$0.00'}     */}
+                        </div>
+                        <div>
+                            {this.state.quantityToExchange > 0 ? <ExchangeTotal/> : ''} 
+                        </div>
+                    </div>
+
+
                 </div>
             );
         }
@@ -100,6 +172,7 @@ class OrderDetails extends React.Component {
                 {this.orderInfo()}
                 {this.orderItems()}
                 <hr />
+                {this.refundReturnTotal()}
                 {this.errorInfo()}
                 {this.orderJson()}
             </div>
@@ -114,6 +187,13 @@ const mapStateToProps = (state) => ({
     loading: state.createReturn.loading,
     error: state.createReturn.error,
     order: state.createReturn.order,
+    quantityToReturn: state.updateReturnExchange.quantityToReturn,
+    quantityToExchange: state.updateReturnExchange.quantityToExchange,
+    keepRefundExchange: state.updateReturnExchange.keepRefundExchange,
+    refundReason: state.updateReturnExchange.refundReason,
+    exchangeReason: state.updateReturnExchange.exchangeReason,
+    exchangeToSize: state.updateReturnExchange.exchangeToSize,
+    itemComments: state.updateReturnExchange.itemComments
 })
 
 export default connect(mapStateToProps)(OrderDetails);

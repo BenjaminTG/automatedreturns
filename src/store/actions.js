@@ -7,6 +7,7 @@ import {
     START_RETURN__REQUEST,
     START_RETURN__SUCCESS,
     START_RETURN__FAILURE,
+    UPDATE_RETURN_EXCHANGE_DETAILS,
     GET_RETURN_STATUS__REQUEST,
     GET_RETURN_STATUS__SUCCESS,
     GET_RETURN_STATUS__FAILURE,
@@ -17,6 +18,18 @@ import {
     GO_TERMS,
 } from "./actionTypes"
 
+export const returnExchangeDetails = (quantityToReturn, quantityToExchange, keepRefundExchange, refundReason, exchangeReason, exchangeToSize, itemComments) => ({
+    type: UPDATE_RETURN_EXCHANGE_DETAILS,
+    payload: {
+        quantityToReturn,
+        quantityToExchange,
+        keepRefundExchange,
+        refundReason,
+        exchangeReason,
+        exchangeToSize,
+        itemComments
+    }
+})
 
 // #region Start Return
 

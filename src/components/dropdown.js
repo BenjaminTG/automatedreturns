@@ -1,51 +1,55 @@
 import React from 'react';
+import { connect } from "react-redux";
+import Options from '../components/options'
+import { returnExchangeDetails } from '../store/actions'
 
-class FlavorForm extends React.Component {
+class Dropdown extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {value: ''};
-  
-      this.handleChange = this.handleChange.bind(this);
+          this.state = {
+                keepRefundExchange: "",
+                refundReason: "",
+                exchangeReason: "",
+                exchangeToSize: "",
+      };   
     }
-  
-    handleChange(event) {
-      this.setState({value: event.target.value});
-      
-    }
-  
 
-    render() {
+    toReturnExchange(choice) {
+      this.setState({keepRefundExchange: choice})
+      this.props.dropDownResponses(this.state.keepRefundExchange)
+    }
+      returnExchangeDetails(choice) {
+        this.setState({exchangeReason: choice})
+        this.props.dropDownResponses(this.state.exchangeReason)
+    }
+
+    render() { 
+      let initalChoices = ["Keep Item", "Return for Exchange", "Return for Refund"];
+      let choices = {
+        "FAULTY": "The product has a fault or defect",
+        "SIZE_TOO_SMALL": "The product is too small for me to wear",
+        "WRONG_ITEM": "The wrong product was in the box"
+    };
+
       return (
-        <form onSubmit={this.handleSubmit}>
+        <div>
+        <form>
           <label>
-            <select className="uk-width-1-1" value={this.state.value} onChange={this.handleChange}>
-                    <option value="" selected disabled hidden>Keep Item</option>
-                    <option value="exchange">Return For Exchange</option>
-                    <option value="refund">Return for Refund</option>
-            </select>
-            {this.state.value !== "" &&
-            <div>
-               <form>
-                   <select className="uk-width-1-1 cl-second-dropdown">
-                    <option value="" selected disabled hidden>Reason for Return...</option>
-                    <option value="incorrect">Incorrect item/colour received</option>
-                    <option value="tooBig">Too Big</option>
-                    <option value="tooSmall">Too Small</option>
-                    <option value="noLike">Doesn't suit/didn't like</option>
-                    <option value="faulty">Faulty</option>
-                    </select>
-              </form>
-              <textarea className="uk-width-1-1" name="comments"></textarea>
+                          <Options
+                                choices={initalChoices}
+                                onChoice={(choice) => this.toReturnExchange((choice))} />
 
-              </div>
-            }
-          </label>
+
+           {this.state.keepRefundExchange === "Keep Item" || !!(this.state.keepRefundExchange) &&
+                         <Options
+                                choices={choices}
+                                onChoice={(choice) => this.returnExchangeDetails((choice))} />
+          }              
+        </label>
         </form>
-
-
+        </div>
       );
     }
   }
 
-
-export default FlavorForm;
+export default Dropdown;
